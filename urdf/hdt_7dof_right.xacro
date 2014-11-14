@@ -1,0 +1,860 @@
+<?xml version="1.0"?>
+<robot name="hdt_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- constants -->
+	<xacro:property name="PI" value="3.1415926535897931"/>
+
+	<!-- materials -->
+	<material name="green">
+		<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
+	</material>
+
+	<material name="black">
+		<color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
+	</material>
+
+	<material name="grey">
+		<color rgba="${40/255} ${40/255} ${40/255} 1.0"/>
+	</material>
+
+	<!-- import gazebo definitions 
+	<xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof.gazebo" /> -->
+
+	<!-- segment 0 -->
+	<link name="world"/>
+
+	<!-- segment 1 -->
+	<joint name="joint1" type="revolute">
+		<hdt id="1"/>
+		<axis xyz="1 0 0"/>
+		<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<parent link="world"/>
+		<child link="link1"/>
+    		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran1">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint1">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor1">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="link1">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_1_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_1_right.STL"/>
+			</geometry>
+			<material name="green"/>
+		</visual>
+
+		<inertial>
+		<origin xyz="-0.04488 0 0" rpy="0 0 0"/>
+		<mass value="1.00775"/>
+			<inertia
+			ixx="0.00064952" ixy="0.0" ixz="0.0"
+			iyy="0.00104342" iyz="0.0"
+			izz="0.00104342"/>
+		</inertial>
+	</link>
+
+	<joint name="joint1f" type="fixed">
+		<parent link="link1"/>
+		<child link="link2a"/>
+		<origin xyz="-0.09217 0 0" rpy="0 0 0"/>
+	</joint>
+
+	<link name="link2a">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2a_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2a_right.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="-0.04416876 0 0" rpy="0 0 0"/>
+			<mass value="0.66774822"/>
+			<inertia
+			ixx="0.00062987" ixy="0.0" ixz="0.0"
+			iyy="0.00091291" iyz="0.0"
+			izz="0.00110241"/>
+		</inertial>
+	</link>
+
+	<!-- segment 2 -->
+	<joint name="joint2" type="revolute">
+		<hdt id="2"/>
+		<axis xyz="0 -1 0"/>
+		<limit effort="60.0" lower="-3.1416" upper="0.5236" velocity="2.0944"/>
+		<origin xyz="-0.07 0 0" rpy="0 0 0"/>
+		<parent link="link2a"/>
+		<child link="link2b"/>
+    		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran2">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint2">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor2">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="link2b">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2b.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2b.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0 -0.02018105" rpy="0 0 0"/>
+			<mass value="0.69896"/>
+			<inertia
+			ixx="0.00088116" ixy="0.0" ixz="0.0"
+			iyy="0.00094182" iyz="0.0"
+			izz="0.00032992"/>
+		</inertial>
+	</link>
+
+	<!-- segment 3 -->
+	<joint name="joint3" type="revolute">
+		<hdt id="3"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
+		<origin xyz="0 0 -0.077" rpy="0 0 0" />
+		<parent link="link2b"/>
+		<child link="link3"/>
+    		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<link name="link3">
+		<collision>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_3.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_3.STL"/>
+			</geometry>
+			<material name="green"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0 -0.08013953" rpy="0 0 0"/>
+			<mass value="1.77733729"/>
+			<inertia
+			ixx="0.00450640" ixy="0.0" ixz="0.0"
+			iyy="0.00450640" iyz="0.0"
+			izz="0.00114447"/>
+		</inertial>
+	</link>
+
+	<joint name="joint3f" type="fixed">
+		<origin xyz="0 0 -0.16271" rpy="0 0 0"/>
+		<parent link="link3"/>
+		<child link="link4a"/>
+	</joint>
+
+	<link name="link4a">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4a.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4a.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0 -0.04416876" rpy="0 0 0"/>
+			<mass value="0.66774822"/>
+			<inertia
+			ixx="0.00091291" ixy="0.0" ixz="0.0"
+			iyy="0.00110241" iyz="0.0"
+			izz="0.00062987"/>
+		</inertial>
+	</link>
+
+	<!-- segment 4 -->
+	<joint name="joint4" type="revolute">
+		<hdt id="4"/>
+		<axis xyz="1 0 0"/>
+		<limit effort="60.0" lower="-0.5236" upper="3.6652" velocity="2.0944"/>
+		<origin xyz="0 0 -0.07" rpy="0 0 0"/>
+		<parent link="link4a"/>
+		<child link="link4b"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran4">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint4">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor4">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="link4b">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4b.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4b.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.02018105 0" rpy="0 0 0"/>
+			<mass value="0.69896279"/>
+			<inertia
+			ixx="0.00094182" ixy="0.0" ixz="0.0"
+			iyy="0.00032992" iyz="0.0"
+			izz="0.00088116"/>
+		</inertial>
+	</link>
+
+	<!-- segment 5 -->
+	<joint name="joint5" type="revolute">
+		<hdt id="5"/>
+		<axis xyz="0 -1 0"/>
+		<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
+		<origin xyz="0 -0.077 0" rpy="0 0 0"/>
+		<parent link="link4b"/>
+		<child link="link5"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran5">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint5">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor5">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="link5">
+		<collision>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_5.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_5.STL"/>
+			</geometry>
+			<material name="green"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.04487724 0" rpy="0 0 0"/>
+			<mass value="1.00775488"/>
+			<inertia
+			ixx="0.00104342" ixy="0.0" ixz="0.0"
+			iyy="0.00064952" iyz="0.0"
+			izz="0.00104342"/>
+		</inertial>
+	</link>
+
+	<joint name="joint5f" type="fixed">
+		<origin xyz="0 -0.09217 0" rpy="0 0 0"/>
+		<parent link="link5"/>
+		<child link="link6a"/>
+	</joint>
+
+	<link name="link6a">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6a.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6a.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.04112 0" rpy="0 0 0"/>
+			<mass value="0.50058"/>
+			<inertia
+			ixx="0.000580228" ixy="0.0" ixz="0.0"
+			iyy="0.000541503" iyz="0.0"
+			izz="0.000750977"/>
+		</inertial>
+	</link>
+
+	<!-- segment 6 -->
+	<joint name="joint6" type="revolute">
+		<hdt id="6"/>
+		<axis xyz="1 0 0"/>
+		<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
+		<origin xyz="0 -0.055 0" rpy="0 0 0"/>
+		<parent link="link6a"/>
+		<child link="link6b"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran6">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint6">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor6">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="link6b">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6b.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6b.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.03855 0" rpy="0 0 0"/>
+			<mass value="0.99934"/>
+			<inertia
+			ixx="0.001905243" ixy="0.0" ixz="0.0"
+			iyy="0.000474765" iyz="0.0"
+			izz="0.001905243"/>
+		</inertial>
+	</link>
+
+	<!-- segment 7 -->
+	<joint name="joint7" type="revolute">
+		<hdt id="7"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
+		<origin xyz="0 -0.0771 0" rpy="0 0 0"/>
+		<parent link="link6b"/>
+		<child link="link7"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran7">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint7">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor7">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="link7">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_7.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_7.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.01177 0" rpy="0 0 0"/>
+			<mass value="0.47608"/>
+			<inertia
+			ixx="0.000705091" ixy="0.0" ixz="0.0"
+			iyy="0.000537081" iyz="0.0"
+			izz="0.000534342"/>
+		</inertial>
+	</link>
+
+	<!-- palm -->
+	<joint name="palm" type="fixed">
+		<origin xyz="0 -0.055 0" rpy="0 0 0"/>
+		<parent link="link7"/>
+		<child link="palm"/>
+	</joint>
+
+	<link name="palm">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_palm.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_palm.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.08326 -0.00539" rpy="0 0 0"/>
+			<mass value="0.56756"/>
+			<inertia
+			ixx="0.001727803" ixy="0.000001205" ixz="0.0"
+			iyy="0.000549457" iyz="-0.000101997"
+			izz="0.001418031"/>
+		</inertial>
+	</link>
+
+	<!-- thumb base -->
+	<joint name="thumb_base" type="revolute">
+		<hdt id="10"/>
+		<axis xyz="0 -1 0"/>
+		<limit effort="4.0" lower="-1.5708" upper="1.5708" velocity="4.1888"/>
+		<origin xyz="0 -0.05039 0.01529" rpy="0 0 0"/>
+		<parent link="palm"/>
+		<child link="thumb_base"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran10">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="thumb_base">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor10">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="thumb_base">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_base.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_base.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.02653 0.02207" rpy="0 0 0"/>
+			<mass value="0.08562"/>
+			<inertia
+			ixx="0.0000315" ixy="0.0" ixz="0.0"
+			iyy="0.000034299" iyz="0.0"
+			izz="0.000022344"/>
+		</inertial>
+	</link>
+
+	<!-- thumb prox -->
+	<joint name="thumb_prox" type="revolute">
+		<hdt id="11"/>
+		<axis xyz="1 0 0"/>
+		<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
+		<origin xyz="0.00214 -0.02759 0.05700" rpy="0 0 0"/>
+		<parent link="thumb_base"/>
+		<child link="thumb_prox"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran11">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="thumb_prox">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor11">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="thumb_prox">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_prox.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_prox.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 0.001 0.02063" rpy="0 0 0"/>
+			<mass value="0.02523"/>
+			<inertia
+			ixx="0.000004718" ixy="0.0" ixz="0.0"
+			iyy="0.000005374" iyz="-0.000000071"
+			izz="0.000002921"/>
+		</inertial>
+	</link>
+
+	<!-- thumb med -->
+	<joint name="thumb_med" type="fixed">
+		<origin xyz="0 0.00285 0.04341" rpy="0 0 0"/>
+		<parent link="thumb_prox"/>
+		<child link="thumb_med"/>
+	</joint>
+
+	<link name="thumb_med">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_med.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_med.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.00353 0.01162" rpy="0 0 0"/>
+			<mass value="0.0085"/>
+			<inertia
+			ixx="0.000001099" ixy="0.0" ixz="0.0"
+			iyy="0.000001639" iyz="0.000000096"
+			izz="0.000000981"/>
+		</inertial>
+	</link>
+
+	<!-- thumb dist -->
+	<joint name="thumb_dist" type="fixed">
+		<origin xyz="0 -0.0009 0.02769" rpy="0 0 0"/>
+		<parent link="thumb_med"/>
+		<child link="thumb_dist"/>
+	</joint>
+
+	<link name="thumb_dist">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_dist.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_dist.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0 -0.00131 0.01323" rpy="0 0 0"/>
+			<mass value="0.0092"/>
+			<inertia
+			ixx="0.00000066" ixy="0.0" ixz="0.0"
+			iyy="0.000000837" iyz="0.0"
+			izz="0.000000695"/>
+		</inertial>
+	</link>
+
+	<!-- index prox -->
+	<joint name="index_prox" type="revolute">
+		<hdt id="12"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
+		<origin xyz="0 -0.16325 0.02701" rpy="0 0 0"/>
+		<parent link="palm"/>
+		<child link="index_prox"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran12">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="index_prox">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor12">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="index_prox">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_prox_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_prox_right.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
+			<mass value="0.02523"/>
+			<inertia
+			ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
+			iyy="0.000002921" iyz="0.0"
+			izz="0.000004718"/>
+		</inertial>
+	</link>
+
+	<!-- index med -->
+	<joint name="index_med" type="fixed">
+		<origin xyz="-0.00285 -0.04341 0" rpy="0 0 0"/>
+		<parent link="index_prox"/>
+		<child link="index_med"/>
+	</joint>
+
+	<link name="index_med">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_med_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_med_right.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0.00353 -0.01162 0" rpy="0 0 0"/>
+			<mass value="0.0085"/>
+			<inertia
+			ixx="0.000001639" ixy="0.000000096" ixz="0.0"
+			iyy="0.000000981" iyz="0.0"
+			izz="0.000001099"/>
+		</inertial>
+	</link>
+
+	<!-- index dist -->
+	<joint name="index_dist" type="fixed">
+		<origin xyz="0.0009 -0.02769 0" rpy="0 0 0"/>
+		<parent link="index_med"/>
+		<child link="index_dist"/>
+	</joint>
+
+	<link name="index_dist">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_dist_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_dist_right.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0.00131 -0.01323 0" rpy="0 0 0"/>
+			<mass value="0.0092"/>
+			<inertia
+			ixx="0.000000837" ixy="0.0" ixz="0.0"
+			iyy="0.000000695" iyz="0.0"
+			izz="0.00000066"/>
+		</inertial>
+	</link>
+
+	<!-- ring prox -->
+	<joint name="ring_prox" type="revolute">
+		<hdt id="13"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
+		<origin xyz="0 -0.16325 -0.02701" rpy="0 0 0"/>
+		<parent link="palm"/>
+		<child link="ring_prox"/>
+		<dynamics damping="0.7" friction="0.0"/>
+	</joint>
+
+	<transmission name="tran13">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="ring_prox">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor13">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<link name="ring_prox">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_prox_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_prox_right.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
+			<mass value="0.02523"/>
+			<inertia
+			ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
+			iyy="0.000002921" iyz="0.0"
+			izz="0.000004718"/>
+		</inertial>
+	</link>
+
+	<!-- ring med -->
+	<joint name="ring_med" type="fixed">
+		<origin xyz="-0.00285 -0.04341 0" rpy="0 0 0"/>
+		<parent link="ring_prox"/>
+		<child link="ring_med"/>
+	</joint>
+
+	<link name="ring_med">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_med_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_med_right.STL"/>
+			</geometry>
+			<material name="black"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0.00353 -0.01162 0" rpy="0 0 0"/>
+			<mass value="0.0085"/>
+			<inertia
+			ixx="0.000001639" ixy="0.000000096" ixz="0.0"
+			iyy="0.000000981" iyz="0.0"
+			izz="0.000001099"/>
+		</inertial>
+	</link>
+
+	<!-- ring dist -->
+	<joint name="ring_dist" type="fixed">
+		<origin xyz="0.0009 -0.02769 0" rpy="0 0 0"/>
+		<parent link="ring_med"/>
+		<child link="ring_dist"/>
+	</joint>
+
+	<link name="ring_dist">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_dist_right.STL"/>
+			</geometry>
+		</collision>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_dist_right.STL"/>
+			</geometry>
+			<material name="grey"/>
+		</visual>
+
+		<inertial>
+			<origin xyz="0.00131 -0.01323 0" rpy="0 0 0"/>
+			<mass value="0.0092"/>
+			<inertia
+			ixx="0.000000837" ixy="0.0" ixz="0.0"
+			iyy="0.000000695" iyz="0.0"
+			izz="0.00000066"/>
+		</inertial>
+	</link>
+</robot>
+
