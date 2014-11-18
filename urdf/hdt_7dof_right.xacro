@@ -21,7 +21,7 @@
 	<xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof.gazebo" /> -->
 
 	<!-- segment 0 -->
-	<link name="world"/>
+	<link name="base_link"/>
 
 	<!-- segment 1 -->
 	<joint name="joint1" type="revolute">
@@ -29,7 +29,7 @@
 		<axis xyz="1 0 0"/>
 		<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
 		<origin xyz="0 0 0" rpy="0 0 0"/>
-		<parent link="world"/>
+		<parent link="base_link"/>
 		<child link="link1"/>
     		<dynamics damping="0.7" friction="0.0"/>
 	</joint>
