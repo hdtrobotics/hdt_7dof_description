@@ -4,6 +4,14 @@
 	<!-- constants -->
 	<xacro:property name="PI" value="3.1415926535897931"/>
 
+	<!-- default inertia -->
+	<xacro:macro name="default_inertia">
+		<inertia
+		ixx="0.0005" ixy="0.0" ixz="0.0"
+		iyy="0.0005" iyz="0.0"
+		izz="0.0005"/>
+	</xacro:macro>
+	
 	<!-- materials -->
 	<material name="green">
 		<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
@@ -594,10 +602,11 @@
 		<inertial>
 			<origin xyz="0 0.001 0.02063" rpy="0 0 0"/>
 			<mass value="0.02523"/>
-			<inertia
+			<xacro:default_inertia />
+			<!-- <inertia
 			ixx="0.000004718" ixy="0.0" ixz="0.0"
 			iyy="0.000005374" iyz="-0.000000071"
-			izz="0.000002921"/>
+			izz="0.000002921"/> -->
 		</inertial>
 	</link>
 	<gazebo reference="thumb_prox">
@@ -716,10 +725,11 @@
 		<inertial>
 			<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
 			<mass value="0.02523"/>
-			<inertia
+			<xacro:default_inertia />
+			<!-- <inertia
 			ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
 			iyy="0.000002921" iyz="0.0"
-			izz="0.000004718"/>
+			izz="0.000004718"/> -->
 		</inertial>
 	</link>
 	<gazebo reference="index_prox">
@@ -838,10 +848,11 @@
 		<inertial>
 			<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
 			<mass value="0.02523"/>
-			<inertia
+			<xacro:default_inertia />
+			<!-- <inertia
 			ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
 			iyy="0.000002921" iyz="0.0"
-			izz="0.000004718"/>
+			izz="0.000004718"/> -->
 		</inertial>
 	</link>
 	<gazebo reference="ring_prox">
