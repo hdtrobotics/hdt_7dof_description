@@ -25,7 +25,7 @@
 
 	<!-- segment 1 -->
 	<joint name="joint1" type="revolute">
-		<hdt id="1" kmin="100" kmax="200" inertia="0.1"/>
+		<hdt id="41" kmin="100" kmax="200" inertia="0.1"/>
 		<axis xyz="-1 0 0"/>
 		<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
 		<origin xyz="0 0 0" rpy="0 0 3.1416"/>
@@ -104,7 +104,7 @@
 
 	<!-- segment 2 -->
 	<joint name="joint2" type="revolute">
-		<hdt id="2" kmin="100" kmax="200" inertia="0.1"/>
+		<hdt id="42" kmin="100" kmax="200" inertia="0.1"/>
 		<axis xyz="0 1 0"/>
 		<limit effort="60.0" lower="-0.5236" upper="3.1416" velocity="2.0944"/>
 		<origin xyz="-0.07 0 0" rpy="0 0 0"/>
@@ -151,7 +151,7 @@
 
 	<!-- segment 3 -->
 	<joint name="joint3" type="revolute">
-		<hdt id="3" kmin="75" kmax="150" inertia="0.075"/>
+		<hdt id="43" kmin="75" kmax="150" inertia="0.075"/>
 		<axis xyz="0 0 1"/>
 		<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
 		<origin xyz="0 0 -0.077" rpy="0 0 0" />
@@ -220,7 +220,7 @@
 
 	<!-- segment 4 -->
 	<joint name="joint4" type="revolute">
-		<hdt id="4" kmin="75" kmax="150" inertia="0.075"/>
+		<hdt id="44" kmin="75" kmax="150" inertia="0.075"/>
 		<axis xyz="-1 0 0"/>
 		<limit effort="60.0" lower="-0.5236" upper="3.6652" velocity="2.0944"/>
 		<origin xyz="0 0 -0.07" rpy="3.1416 0 0"/>
@@ -267,7 +267,7 @@
 
 	<!-- segment 5 -->
 	<joint name="joint5" type="revolute">
-		<hdt id="5" kmin="50" kmax="100" inertia="0.05"/>
+		<hdt id="45" kmin="50" kmax="100" inertia="0.05"/>
 		<axis xyz="0 -1 0"/>
 		<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
 		<origin xyz="0 -0.077 0" rpy="0 3.1416 0"/>
@@ -346,7 +346,7 @@
 
 	<!-- segment 6 -->
 	<joint name="joint6" type="revolute">
-		<hdt id="6" kmin="50" kmax="100" inertia="0.05"/>
+		<hdt id="46" kmin="50" kmax="100" inertia="0.05"/>
 		<axis xyz="1 0 0"/>
 		<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
 		<origin xyz="0 -0.055 0" rpy="0 0 0"/>
@@ -393,7 +393,7 @@
 
 	<!-- segment 7 -->
 	<joint name="joint7" type="revolute">
-		<hdt id="7" kmin="50" kmax="100" inertia="0.05"/>
+		<hdt id="47" kmin="50" kmax="100" inertia="0.05"/>
 		<axis xyz="0 0 1"/>
 		<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
 		<origin xyz="0 -0.0771 0" rpy="0 0 0"/>
@@ -473,7 +473,7 @@
 
 	<!-- thumb base -->
 	<joint name="thumb_base" type="revolute">
-		<hdt id="10" kmin="5" kmax="20" inertia="0.01"/>
+		<hdt id="50" kmin="5" kmax="20" inertia="0.01"/>
 		<axis xyz="0 -1 0"/>
 		<limit effort="4.0" lower="-1.5708" upper="1.5708" velocity="4.1888"/>
 		<origin xyz="0 -0.05039 0.01529" rpy="0 0 0"/>
@@ -520,7 +520,7 @@
 
 	<!-- thumb prox -->
 	<joint name="thumb_prox" type="revolute">
-		<hdt id="11" kmin="5" kmax="20" inertia="0.01"/>
+		<hdt id="51" kmin="5" kmax="20" inertia="0.01"/>
 		<axis xyz="1 0 0"/>
 		<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
 		<origin xyz="0.00214 -0.02759 0.05700" rpy="0 0 0"/>
@@ -633,7 +633,7 @@
 
 	<!-- index prox -->
 	<joint name="index_prox" type="revolute">
-		<hdt id="12" kmin="5" kmax="20" inertia="0.01"/>
+		<hdt id="52" kmin="5" kmax="20" inertia="0.01"/>
 		<axis xyz="0 0 -1"/>
 		<limit effort="4.0" lower="-1.5708" upper="0.7854" velocity="4.1888"/>
 		<origin xyz="0 -0.16325 0.02701" rpy="0 3.1416 0"/>
@@ -746,7 +746,7 @@
 
 	<!-- ring prox -->
 	<joint name="ring_prox" type="revolute">
-		<hdt id="13" kmin="5" kmax="20" inertia="0.01"/>
+		<hdt id="53" kmin="5" kmax="20" inertia="0.01"/>
 		<axis xyz="0 0 -1"/>
 		<limit effort="4.0" lower="-1.5708" upper="0.7854" velocity="4.1888"/>
 		<origin xyz="0 -0.16325 -0.02701" rpy="0 3.1416 0"/>
