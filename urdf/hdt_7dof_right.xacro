@@ -4,6 +4,14 @@
 	<!-- constants -->
 	<xacro:property name="PI" value="3.1415926535897931"/>
 
+	<!-- default inertia -->
+	<xacro:macro name="default_inertia">
+		<inertia
+		ixx="0.0005" ixy="0.0" ixz="0.0"
+		iyy="0.0005" iyz="0.0"
+		izz="0.0005"/>
+	</xacro:macro>
+	
 	<!-- materials -->
 	<material name="green">
 		<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
@@ -21,7 +29,7 @@
 	<xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof.gazebo" /> -->
 
 	<!-- segment 0 -->
-	<link name="base_link"/>
+	<link name="world" />
 
 	<!-- segment 1 -->
 	<joint name="joint1" type="revolute">
@@ -29,7 +37,7 @@
 		<axis xyz="1 0 0"/>
 		<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
 		<origin xyz="0 0 0" rpy="0 0 0"/>
-		<parent link="base_link"/>
+		<parent link="world"/>
 		<child link="link1"/>
     		<dynamics damping="0.7" friction="0.0"/>
 	</joint>
@@ -69,6 +77,9 @@
 			izz="0.00104342"/>
 		</inertial>
 	</link>
+	<gazebo reference="link1">
+		<material>Gazebo/Green</material>
+	</gazebo>
 
 	<joint name="joint1f" type="fixed">
 		<parent link="link1"/>
@@ -101,6 +112,9 @@
 			izz="0.00110241"/>
 		</inertial>
 	</link>
+	<gazebo reference="link2a">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- segment 2 -->
 	<joint name="joint2" type="revolute">
@@ -148,6 +162,9 @@
 			izz="0.00032992"/>
 		</inertial>
 	</link>
+	<gazebo reference="link2b">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- segment 3 -->
 	<joint name="joint3" type="revolute">
@@ -185,6 +202,9 @@
 			izz="0.00114447"/>
 		</inertial>
 	</link>
+	<gazebo reference="link3">
+		<material>Gazebo/Green</material>
+	</gazebo>
 
 	<joint name="joint3f" type="fixed">
 		<origin xyz="0 0 -0.16271" rpy="0 0 0"/>
@@ -217,6 +237,9 @@
 			izz="0.00062987"/>
 		</inertial>
 	</link>
+	<gazebo reference="link4a">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- segment 4 -->
 	<joint name="joint4" type="revolute">
@@ -264,6 +287,9 @@
 			izz="0.00088116"/>
 		</inertial>
 	</link>
+	<gazebo reference="link4b">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- segment 5 -->
 	<joint name="joint5" type="revolute">
@@ -311,6 +337,9 @@
 			izz="0.00104342"/>
 		</inertial>
 	</link>
+	<gazebo reference="link5">
+		<material>Gazebo/Green</material>
+	</gazebo>
 
 	<joint name="joint5f" type="fixed">
 		<origin xyz="0 -0.09217 0" rpy="0 0 0"/>
@@ -343,6 +372,9 @@
 			izz="0.000750977"/>
 		</inertial>
 	</link>
+	<gazebo reference="link6a">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- segment 6 -->
 	<joint name="joint6" type="revolute">
@@ -390,6 +422,9 @@
 			izz="0.001905243"/>
 		</inertial>
 	</link>
+	<gazebo reference="link6b">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- segment 7 -->
 	<joint name="joint7" type="revolute">
@@ -437,6 +472,9 @@
 			izz="0.000534342"/>
 		</inertial>
 	</link>
+	<gazebo reference="link7">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- palm -->
 	<joint name="palm" type="fixed">
@@ -470,6 +508,9 @@
 			izz="0.001418031"/>
 		</inertial>
 	</link>
+	<gazebo reference="palm">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- thumb base -->
 	<joint name="thumb_base" type="revolute">
@@ -517,6 +558,9 @@
 			izz="0.000022344"/>
 		</inertial>
 	</link>
+	<gazebo reference="thumb_base">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- thumb prox -->
 	<joint name="thumb_prox" type="revolute">
@@ -558,12 +602,16 @@
 		<inertial>
 			<origin xyz="0 0.001 0.02063" rpy="0 0 0"/>
 			<mass value="0.02523"/>
-			<inertia
+			<xacro:default_inertia />
+			<!-- <inertia
 			ixx="0.000004718" ixy="0.0" ixz="0.0"
 			iyy="0.000005374" iyz="-0.000000071"
-			izz="0.000002921"/>
+			izz="0.000002921"/> -->
 		</inertial>
 	</link>
+	<gazebo reference="thumb_prox">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- thumb med -->
 	<joint name="thumb_med" type="fixed">
@@ -597,6 +645,9 @@
 			izz="0.000000981"/>
 		</inertial>
 	</link>
+	<gazebo reference="thumb_med">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- thumb dist -->
 	<joint name="thumb_dist" type="fixed">
@@ -630,6 +681,9 @@
 			izz="0.000000695"/>
 		</inertial>
 	</link>
+	<gazebo reference="thumb_dist">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- index prox -->
 	<joint name="index_prox" type="revolute">
@@ -671,12 +725,16 @@
 		<inertial>
 			<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
 			<mass value="0.02523"/>
-			<inertia
+			<xacro:default_inertia />
+			<!-- <inertia
 			ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
 			iyy="0.000002921" iyz="0.0"
-			izz="0.000004718"/>
+			izz="0.000004718"/> -->
 		</inertial>
 	</link>
+	<gazebo reference="index_prox">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- index med -->
 	<joint name="index_med" type="fixed">
@@ -710,6 +768,9 @@
 			izz="0.000001099"/>
 		</inertial>
 	</link>
+	<gazebo reference="index_med">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- index dist -->
 	<joint name="index_dist" type="fixed">
@@ -743,6 +804,9 @@
 			izz="0.00000066"/>
 		</inertial>
 	</link>
+	<gazebo reference="index_dist">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- ring prox -->
 	<joint name="ring_prox" type="revolute">
@@ -784,12 +848,16 @@
 		<inertial>
 			<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
 			<mass value="0.02523"/>
-			<inertia
+			<xacro:default_inertia />
+			<!-- <inertia
 			ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
 			iyy="0.000002921" iyz="0.0"
-			izz="0.000004718"/>
+			izz="0.000004718"/> -->
 		</inertial>
 	</link>
+	<gazebo reference="ring_prox">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 
 	<!-- ring med -->
 	<joint name="ring_med" type="fixed">
@@ -823,6 +891,9 @@
 			izz="0.000001099"/>
 		</inertial>
 	</link>
+	<gazebo reference="ring_med">
+		<material>Gazebo/Black</material>
+	</gazebo>
 
 	<!-- ring dist -->
 	<joint name="ring_dist" type="fixed">
@@ -856,5 +927,8 @@
 			izz="0.00000066"/>
 		</inertial>
 	</link>
+	<gazebo reference="ring_dist">
+		<material>Gazebo/Grey</material>
+	</gazebo>
 </robot>
 

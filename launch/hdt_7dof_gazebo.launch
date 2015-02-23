@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<launch>
+	<!-- general arguments -->
+	<arg name="arm" default="right" />
+	
+	<!-- gazebo arguments -->
+	<arg name="x" default="0" />
+	<arg name="y" default="0" />
+	<arg name="z" default="1" />
+	<arg name="roll" default="0" />
+	<arg name="pitch" default="0" />
+	<arg name="yaw" default="0" />
+	<arg name="paused" default="true" />
+	
+	<!-- load urdf -->
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find hdt_7dof_description)/urdf/hdt_7dof_$(arg arm).xacro'"/>
+	
+	<!-- launch gazebo -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="paused" value="$(arg paused)" />
+	</include>
+
+	<!-- spawn the model -->
+	<node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model hdt_7dof_$(arg arm) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
+</launch>
