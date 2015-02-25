@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <robot name="hdt_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+	<gazebo>
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+			<robotNamespace>/hdt_7dof</robotNamespace>
+		</plugin>
+	</gazebo>
+
 	<!-- constants -->
 	<xacro:property name="PI" value="3.1415926535897931"/>
 
