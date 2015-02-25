@@ -177,6 +177,16 @@
     		<dynamics damping="0.7" friction="0.0"/>
 	</joint>
 
+	<transmission name="tran3">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="joint3">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor3">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
 	<link name="link3">
 		<collision>
 			<origin xyz="0 0 0.0" rpy="0 0 0"/>
