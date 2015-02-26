@@ -10,7 +10,7 @@
 	<arg name="roll" default="0" />
 	<arg name="pitch" default="0" />
 	<arg name="yaw" default="0" />
-	<arg name="paused" default="true" />
+	<arg name="paused" default="false" />
 	
 	<!-- load urdf -->
 	<param name="robot_description" command="$(find xacro)/xacro.py '$(find hdt_7dof_description)/urdf/hdt_7dof_$(arg arm).xacro'"/>
