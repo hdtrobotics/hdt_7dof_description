@@ -9,7 +9,7 @@
 		izz="0.0005"/>
 	</xacro:macro>
 	
-	<xacro:macro name="hdt_7dof_right" params="parent x y z">
+	<xacro:macro name="hdt_7dof_right" params="parent x y z yaw">
 		<!-- materials -->
 		<material name="green">
 			<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
@@ -28,7 +28,7 @@
 			<hdt id="1" kmin="100" kmax="200" inertia="0.1"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
-			<origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+			<origin xyz="${x} ${y} ${z}" rpy="0 0 ${yaw}"/>
 			<parent link="${parent}"/>
 			<child link="link1"/>
 			<dynamics damping="0.7" friction="0.0"/>
