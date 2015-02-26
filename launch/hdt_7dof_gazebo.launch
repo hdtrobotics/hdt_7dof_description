@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 	<!-- general arguments -->
-	<arg name="arm" default="right" />
+	<arg name="arm" default="left" />
 	
 	<!-- gazebo arguments -->
 	<arg name="x" default="0" />
