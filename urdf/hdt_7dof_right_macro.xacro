@@ -8,43 +8,43 @@
 		iyy="0.0005" iyz="0.0"
 		izz="0.0005"/>
 	</xacro:macro>
-	
-	<xacro:macro name="hdt_7dof_right" params="parent x y z yaw">
+
+	<xacro:macro name="hdt_7dof_right" params="parent x y z yaw prefix">
 		<!-- materials -->
-		<material name="green">
+		<material name="${prefix}green">
 			<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
 		</material>
 
-		<material name="black">
+		<material name="${prefix}black">
 			<color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
 		</material>
 
-		<material name="grey">
+		<material name="${prefix}grey">
 			<color rgba="${40/255} ${40/255} ${40/255} 1.0"/>
 		</material>
 
 		<!-- segment 1 -->
-		<joint name="joint1" type="revolute">
+		<joint name="${prefix}joint1" type="revolute">
 			<hdt id="1" kmin="100" kmax="200" inertia="0.1"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
 			<origin xyz="${x} ${y} ${z}" rpy="0 0 ${yaw}"/>
 			<parent link="${parent}"/>
-			<child link="link1"/>
+			<child link="${prefix}link1"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran1">
+		<transmission name="${prefix}tran1">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint1">
+			<joint name="${prefix}joint1">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor1">
+			<actuator name="${prefix}motor1">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link1">
+		<link name="${prefix}link1">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -57,7 +57,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_1_right.STL"/>
 				</geometry>
-				<material name="green"/>
+				<material name="${prefix}green"/>
 			</visual>
 
 			<inertial>
@@ -69,17 +69,17 @@
 				izz="0.00104342"/>
 			</inertial>
 		</link>
-		<gazebo reference="link1">
+		<gazebo reference="${prefix}link1">
 			<material>Gazebo/Green</material>
 		</gazebo>
 
-		<joint name="joint1f" type="fixed">
-			<parent link="link1"/>
-			<child link="link2a"/>
+		<joint name="${prefix}joint1f" type="fixed">
+			<parent link="${prefix}link1"/>
+			<child link="${prefix}link2a"/>
 			<origin xyz="-0.09217 0 0" rpy="0 0 0"/>
 		</joint>
 
-		<link name="link2a">
+		<link name="${prefix}link2a">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -92,7 +92,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2a_right.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -104,32 +104,32 @@
 				izz="0.00110241"/>
 			</inertial>
 		</link>
-		<gazebo reference="link2a">
+		<gazebo reference="${prefix}link2a">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- segment 2 -->
-		<joint name="joint2" type="revolute">
+		<joint name="${prefix}joint2" type="revolute">
 			<hdt id="2" kmin="100" kmax="200" inertia="0.1"/>
 			<axis xyz="0 -1 0"/>
 			<limit effort="60.0" lower="-3.1416" upper="0.5236" velocity="2.0944"/>
 			<origin xyz="-0.07 0 0" rpy="0 0 0"/>
-			<parent link="link2a"/>
-			<child link="link2b"/>
+			<parent link="${prefix}link2a"/>
+			<child link="${prefix}link2b"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran2">
+		<transmission name="${prefix}tran2">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint2">
+			<joint name="${prefix}joint2">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor2">
+			<actuator name="${prefix}motor2">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link2b">
+		<link name="${prefix}link2b">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -142,7 +142,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2b.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -154,32 +154,32 @@
 				izz="0.00032992"/>
 			</inertial>
 		</link>
-		<gazebo reference="link2b">
+		<gazebo reference="${prefix}link2b">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- segment 3 -->
-		<joint name="joint3" type="revolute">
+		<joint name="${prefix}joint3" type="revolute">
 			<hdt id="3" kmin="75" kmax="150" inertia="0.075"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
 			<origin xyz="0 0 -0.077" rpy="0 0 0" />
-			<parent link="link2b"/>
-			<child link="link3"/>
+			<parent link="${prefix}link2b"/>
+			<child link="${prefix}link3"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran3">
+		<transmission name="${prefix}tran3">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint3">
+			<joint name="${prefix}joint3">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor3">
+			<actuator name="${prefix}motor3">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link3">
+		<link name="${prefix}link3">
 			<collision>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -192,7 +192,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_3.STL"/>
 				</geometry>
-				<material name="green"/>
+				<material name="${prefix}green"/>
 			</visual>
 
 			<inertial>
@@ -204,17 +204,17 @@
 				izz="0.00114447"/>
 			</inertial>
 		</link>
-		<gazebo reference="link3">
+		<gazebo reference="${prefix}link3">
 			<material>Gazebo/Green</material>
 		</gazebo>
 
-		<joint name="joint3f" type="fixed">
+		<joint name="${prefix}joint3f" type="fixed">
 			<origin xyz="0 0 -0.16271" rpy="0 0 0"/>
-			<parent link="link3"/>
-			<child link="link4a"/>
+			<parent link="${prefix}link3"/>
+			<child link="${prefix}link4a"/>
 		</joint>
 
-		<link name="link4a">
+		<link name="${prefix}link4a">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -227,7 +227,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4a.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -239,32 +239,32 @@
 				izz="0.00062987"/>
 			</inertial>
 		</link>
-		<gazebo reference="link4a">
+		<gazebo reference="${prefix}link4a">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- segment 4 -->
-		<joint name="joint4" type="revolute">
+		<joint name="${prefix}joint4" type="revolute">
 			<hdt id="4" kmin="75" kmax="150" inertia="0.075"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="60.0" lower="-0.5236" upper="3.6652" velocity="2.0944"/>
 			<origin xyz="0 0 -0.07" rpy="0 0 0"/>
-			<parent link="link4a"/>
-			<child link="link4b"/>
+			<parent link="${prefix}link4a"/>
+			<child link="${prefix}link4b"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran4">
+		<transmission name="${prefix}tran4">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint4">
+			<joint name="${prefix}joint4">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor4">
+			<actuator name="${prefix}motor4">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link4b">
+		<link name="${prefix}link4b">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -277,7 +277,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4b.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -289,32 +289,32 @@
 				izz="0.00088116"/>
 			</inertial>
 		</link>
-		<gazebo reference="link4b">
+		<gazebo reference="${prefix}link4b">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- segment 5 -->
-		<joint name="joint5" type="revolute">
+		<joint name="${prefix}joint5" type="revolute">
 			<hdt id="5" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="0 -1 0"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
 			<origin xyz="0 -0.077 0" rpy="0 0 0"/>
-			<parent link="link4b"/>
-			<child link="link5"/>
+			<parent link="${prefix}link4b"/>
+			<child link="${prefix}link5"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran5">
+		<transmission name="${prefix}tran5">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint5">
+			<joint name="${prefix}joint5">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor5">
+			<actuator name="${prefix}motor5">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link5">
+		<link name="${prefix}link5">
 			<collision>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -327,7 +327,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_5.STL"/>
 				</geometry>
-				<material name="green"/>
+				<material name="${prefix}green"/>
 			</visual>
 
 			<inertial>
@@ -339,17 +339,17 @@
 				izz="0.00104342"/>
 			</inertial>
 		</link>
-		<gazebo reference="link5">
+		<gazebo reference="${prefix}link5">
 			<material>Gazebo/Green</material>
 		</gazebo>
 
-		<joint name="joint5f" type="fixed">
+		<joint name="${prefix}joint5f" type="fixed">
 			<origin xyz="0 -0.09217 0" rpy="0 0 0"/>
-			<parent link="link5"/>
-			<child link="link6a"/>
+			<parent link="${prefix}link5"/>
+			<child link="${prefix}link6a"/>
 		</joint>
 
-		<link name="link6a">
+		<link name="${prefix}link6a">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -362,7 +362,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6a.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -374,32 +374,32 @@
 				izz="0.000750977"/>
 			</inertial>
 		</link>
-		<gazebo reference="link6a">
+		<gazebo reference="${prefix}link6a">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- segment 6 -->
-		<joint name="joint6" type="revolute">
+		<joint name="${prefix}joint6" type="revolute">
 			<hdt id="6" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
 			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
-			<parent link="link6a"/>
-			<child link="link6b"/>
+			<parent link="${prefix}link6a"/>
+			<child link="${prefix}link6b"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran6">
+		<transmission name="${prefix}tran6">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint6">
+			<joint name="${prefix}joint6">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor6">
+			<actuator name="${prefix}motor6">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link6b">
+		<link name="${prefix}link6b">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -412,7 +412,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6b.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -424,32 +424,32 @@
 				izz="0.001905243"/>
 			</inertial>
 		</link>
-		<gazebo reference="link6b">
+		<gazebo reference="${prefix}link6b">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- segment 7 -->
-		<joint name="joint7" type="revolute">
+		<joint name="${prefix}joint7" type="revolute">
 			<hdt id="7" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
 			<origin xyz="0 -0.0771 0" rpy="0 0 0"/>
-			<parent link="link6b"/>
-			<child link="link7"/>
+			<parent link="${prefix}link6b"/>
+			<child link="${prefix}link7"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran7">
+		<transmission name="${prefix}tran7">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint7">
+			<joint name="${prefix}joint7">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor7">
+			<actuator name="${prefix}motor7">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="link7">
+		<link name="${prefix}link7">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -462,7 +462,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_7.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -474,18 +474,18 @@
 				izz="0.000534342"/>
 			</inertial>
 		</link>
-		<gazebo reference="link7">
+		<gazebo reference="${prefix}link7">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- palm -->
-		<joint name="palm" type="fixed">
+		<joint name="${prefix}palm" type="fixed">
 			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
-			<parent link="link7"/>
-			<child link="palm"/>
+			<parent link="${prefix}link7"/>
+			<child link="${prefix}palm"/>
 		</joint>
 
-		<link name="palm">
+		<link name="${prefix}palm">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -498,7 +498,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_palm.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -510,32 +510,32 @@
 				izz="0.001418031"/>
 			</inertial>
 		</link>
-		<gazebo reference="palm">
+		<gazebo reference="${prefix}palm">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- thumb base -->
-		<joint name="thumb_base" type="revolute">
+		<joint name="${prefix}thumb_base" type="revolute">
 			<hdt id="10" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="0 -1 0"/>
 			<limit effort="4.0" lower="-1.5708" upper="1.5708" velocity="4.1888"/>
 			<origin xyz="0 -0.05039 0.01529" rpy="0 0 0"/>
-			<parent link="palm"/>
-			<child link="thumb_base"/>
+			<parent link="${prefix}palm"/>
+			<child link="${prefix}thumb_base"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran10">
+		<transmission name="${prefix}tran10">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="thumb_base">
+			<joint name="${prefix}thumb_base">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor10">
+			<actuator name="${prefix}motor10">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="thumb_base">
+		<link name="${prefix}thumb_base">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -548,7 +548,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_base.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -560,32 +560,32 @@
 				izz="0.000022344"/>
 			</inertial>
 		</link>
-		<gazebo reference="thumb_base">
+		<gazebo reference="${prefix}thumb_base">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- thumb prox -->
-		<joint name="thumb_prox" type="revolute">
+		<joint name="${prefix}thumb_prox" type="revolute">
 			<hdt id="11" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
 			<origin xyz="0.00214 -0.02759 0.05700" rpy="0 0 0"/>
-			<parent link="thumb_base"/>
-			<child link="thumb_prox"/>
+			<parent link="${prefix}thumb_base"/>
+			<child link="${prefix}thumb_prox"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran11">
+		<transmission name="${prefix}tran11">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="thumb_prox">
+			<joint name="${prefix}thumb_prox">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor11">
+			<actuator name="${prefix}motor11">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="thumb_prox">
+		<link name="${prefix}thumb_prox">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -598,7 +598,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_prox.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -611,18 +611,18 @@
 				izz="0.000002921"/> -->
 			</inertial>
 		</link>
-		<gazebo reference="thumb_prox">
+		<gazebo reference="${prefix}thumb_prox">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- thumb med -->
-		<joint name="thumb_med" type="fixed">
+		<joint name="${prefix}thumb_med" type="fixed">
 			<origin xyz="0 0.00285 0.04341" rpy="0 0 0"/>
-			<parent link="thumb_prox"/>
-			<child link="thumb_med"/>
+			<parent link="${prefix}thumb_prox"/>
+			<child link="${prefix}thumb_med"/>
 		</joint>
 
-		<link name="thumb_med">
+		<link name="${prefix}thumb_med">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -635,7 +635,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_med.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -647,18 +647,18 @@
 				izz="0.000000981"/>
 			</inertial>
 		</link>
-		<gazebo reference="thumb_med">
+		<gazebo reference="${prefix}thumb_med">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- thumb dist -->
-		<joint name="thumb_dist" type="fixed">
+		<joint name="${prefix}thumb_dist" type="fixed">
 			<origin xyz="0 -0.0009 0.02769" rpy="0 0 0"/>
-			<parent link="thumb_med"/>
-			<child link="thumb_dist"/>
+			<parent link="${prefix}thumb_med"/>
+			<child link="${prefix}thumb_dist"/>
 		</joint>
 
-		<link name="thumb_dist">
+		<link name="${prefix}thumb_dist">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -671,7 +671,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_dist.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -683,32 +683,32 @@
 				izz="0.000000695"/>
 			</inertial>
 		</link>
-		<gazebo reference="thumb_dist">
+		<gazebo reference="${prefix}thumb_dist">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- index prox -->
-		<joint name="index_prox" type="revolute">
+		<joint name="${prefix}index_prox" type="revolute">
 			<hdt id="12" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
 			<origin xyz="0 -0.16325 0.02701" rpy="0 0 0"/>
-			<parent link="palm"/>
-			<child link="index_prox"/>
+			<parent link="${prefix}palm"/>
+			<child link="${prefix}index_prox"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran12">
+		<transmission name="${prefix}tran12">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="index_prox">
+			<joint name="${prefix}index_prox">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor12">
+			<actuator name="${prefix}motor12">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="index_prox">
+		<link name="${prefix}index_prox">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -721,7 +721,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_prox_right.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -734,18 +734,18 @@
 				izz="0.000004718"/> -->
 			</inertial>
 		</link>
-		<gazebo reference="index_prox">
+		<gazebo reference="${prefix}index_prox">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- index med -->
-		<joint name="index_med" type="fixed">
+		<joint name="${prefix}index_med" type="fixed">
 			<origin xyz="-0.00285 -0.04341 0" rpy="0 0 0"/>
-			<parent link="index_prox"/>
-			<child link="index_med"/>
+			<parent link="${prefix}index_prox"/>
+			<child link="${prefix}index_med"/>
 		</joint>
 
-		<link name="index_med">
+		<link name="${prefix}index_med">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -758,7 +758,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_med_right.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -770,18 +770,18 @@
 				izz="0.000001099"/>
 			</inertial>
 		</link>
-		<gazebo reference="index_med">
+		<gazebo reference="${prefix}index_med">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- index dist -->
-		<joint name="index_dist" type="fixed">
+		<joint name="${prefix}index_dist" type="fixed">
 			<origin xyz="0.0009 -0.02769 0" rpy="0 0 0"/>
-			<parent link="index_med"/>
-			<child link="index_dist"/>
+			<parent link="${prefix}index_med"/>
+			<child link="${prefix}index_dist"/>
 		</joint>
 
-		<link name="index_dist">
+		<link name="${prefix}index_dist">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -794,7 +794,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_dist_right.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -806,32 +806,32 @@
 				izz="0.00000066"/>
 			</inertial>
 		</link>
-		<gazebo reference="index_dist">
+		<gazebo reference="${prefix}index_dist">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- ring prox -->
-		<joint name="ring_prox" type="revolute">
+		<joint name="${prefix}ring_prox" type="revolute">
 			<hdt id="13" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
 			<origin xyz="0 -0.16325 -0.02701" rpy="0 0 0"/>
-			<parent link="palm"/>
-			<child link="ring_prox"/>
+			<parent link="${prefix}palm"/>
+			<child link="${prefix}ring_prox"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
-		<transmission name="tran13">
+		<transmission name="${prefix}tran13">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="ring_prox">
+			<joint name="${prefix}ring_prox">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor13">
+			<actuator name="${prefix}motor13">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
 
-		<link name="ring_prox">
+		<link name="${prefix}ring_prox">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -844,7 +844,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_prox_right.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -857,18 +857,18 @@
 				izz="0.000004718"/> -->
 			</inertial>
 		</link>
-		<gazebo reference="ring_prox">
+		<gazebo reference="${prefix}ring_prox">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<!-- ring med -->
-		<joint name="ring_med" type="fixed">
+		<joint name="${prefix}ring_med" type="fixed">
 			<origin xyz="-0.00285 -0.04341 0" rpy="0 0 0"/>
-			<parent link="ring_prox"/>
-			<child link="ring_med"/>
+			<parent link="${prefix}ring_prox"/>
+			<child link="${prefix}ring_med"/>
 		</joint>
 
-		<link name="ring_med">
+		<link name="${prefix}ring_med">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -881,7 +881,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_med_right.STL"/>
 				</geometry>
-				<material name="black"/>
+				<material name="${prefix}black"/>
 			</visual>
 
 			<inertial>
@@ -893,18 +893,18 @@
 				izz="0.000001099"/>
 			</inertial>
 		</link>
-		<gazebo reference="ring_med">
+		<gazebo reference="${prefix}ring_med">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- ring dist -->
-		<joint name="ring_dist" type="fixed">
+		<joint name="${prefix}ring_dist" type="fixed">
 			<origin xyz="0.0009 -0.02769 0" rpy="0 0 0"/>
-			<parent link="ring_med"/>
-			<child link="ring_dist"/>
+			<parent link="${prefix}ring_med"/>
+			<child link="${prefix}ring_dist"/>
 		</joint>
 
-		<link name="ring_dist">
+		<link name="${prefix}ring_dist">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -917,7 +917,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_dist_right.STL"/>
 				</geometry>
-				<material name="grey"/>
+				<material name="${prefix}grey"/>
 			</visual>
 
 			<inertial>
@@ -929,7 +929,7 @@
 				izz="0.00000066"/>
 			</inertial>
 		</link>
-		<gazebo reference="ring_dist">
+		<gazebo reference="${prefix}ring_dist">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 	</xacro:macro>
