@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<launch>
+	<!-- arguments -->
+	<arg name="arm" default="left" />
+	<arg name="gui" default="true" />
+	<arg name="publish_states" default="false" />
+	
+	<!-- load urdf -->
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find hdt_7dof_description)/urdf/hdt_7dof_$(arg arm).xacro'"/>
+	
+	<!-- optionally start state publishers -->
+	<node if="$(arg publish_states)" name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+	<node if="$(arg publish_states)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<param name="use_gui" value="$(arg gui)" />
+	</node>
+	
+	<!-- launch rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find hdt_7dof_description)/launch/hdt_7dof_$(arg arm).rviz"/>
+</launch>
+
