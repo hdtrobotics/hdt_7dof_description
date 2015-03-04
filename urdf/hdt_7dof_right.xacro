@@ -3,7 +3,7 @@
 
 	<gazebo>
 		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-			<robotNamespace>/hdt_7dof</robotNamespace>
+			<robotNamespace>/hdt_7dof_right</robotNamespace>
 		</plugin>
 	</gazebo>
 
