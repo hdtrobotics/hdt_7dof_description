@@ -514,6 +514,15 @@
 			<material>Gazebo/Black</material>
 		</gazebo>
 
+		<!-- gripper frame -->
+		<joint name="${prefix}gripper_frame_joint" type="fixed">
+			<origin xyz="0 -0.13 0" rpy="0 0 -1.57079" />
+			<parent link="${prefix}palm" />
+			<child link="${prefix}gripper_frame" />
+		</joint>
+
+		<link name="${prefix}gripper_frame" />
+
 		<!-- thumb base -->
 		<joint name="${prefix}thumb_base" type="revolute">
 			<hdt id="10" kmin="5" kmax="20" inertia="0.01"/>
