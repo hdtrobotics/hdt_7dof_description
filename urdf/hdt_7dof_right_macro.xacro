@@ -4,9 +4,9 @@
 	<!-- default inertia -->
 	<xacro:macro name="default_inertia">
 		<inertia
-		ixx="0.0005" ixy="0.0" ixz="0.0"
-		iyy="0.0005" iyz="0.0"
-		izz="0.0005"/>
+			ixx="0.0005" ixy="0.0" ixz="0.0"
+			iyy="0.0005" iyz="0.0"
+			izz="0.0005"/>
 	</xacro:macro>
 
 	<xacro:macro name="hdt_7dof_right" params="parent x y z yaw prefix">
@@ -51,7 +51,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_1_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -59,14 +58,13 @@
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
-
 			<inertial>
-			<origin xyz="-0.04488 0 0" rpy="0 0 0"/>
-			<mass value="1.00775"/>
+				<origin xyz="-0.04488 0 0" rpy="0 0 0"/>
+				<mass value="1.00775"/>
 				<inertia
-				ixx="0.00064952" ixy="0.0" ixz="0.0"
-				iyy="0.00104342" iyz="0.0"
-				izz="0.00104342"/>
+					ixx="0.00064952" ixy="0.0" ixz="0.0"
+					iyy="0.00104342" iyz="0.0"
+					izz="0.00104342"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link1">
@@ -86,7 +84,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2a_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -94,14 +91,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="-0.04416876 0 0" rpy="0 0 0"/>
 				<mass value="0.66774822"/>
 				<inertia
-				ixx="0.00062987" ixy="0.0" ixz="0.0"
-				iyy="0.00091291" iyz="0.0"
-				izz="0.00110241"/>
+					ixx="0.00062987" ixy="0.0" ixz="0.0"
+					iyy="0.00091291" iyz="0.0"
+					izz="0.00110241"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link2a">
@@ -136,7 +132,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2b.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -144,14 +139,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 0 -0.02018105" rpy="0 0 0"/>
 				<mass value="0.69896"/>
 				<inertia
-				ixx="0.00088116" ixy="0.0" ixz="0.0"
-				iyy="0.00094182" iyz="0.0"
-				izz="0.00032992"/>
+					ixx="0.00088116" ixy="0.0" ixz="0.0"
+					iyy="0.00094182" iyz="0.0"
+					izz="0.00032992"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link2b">
@@ -186,7 +180,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_3.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -194,14 +187,13 @@
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 0 -0.08013953" rpy="0 0 0"/>
 				<mass value="1.77733729"/>
 				<inertia
-				ixx="0.00450640" ixy="0.0" ixz="0.0"
-				iyy="0.00450640" iyz="0.0"
-				izz="0.00114447"/>
+					ixx="0.00450640" ixy="0.0" ixz="0.0"
+					iyy="0.00450640" iyz="0.0"
+					izz="0.00114447"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link3">
@@ -221,7 +213,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4a.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -229,14 +220,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 0 -0.04416876" rpy="0 0 0"/>
 				<mass value="0.66774822"/>
 				<inertia
-				ixx="0.00091291" ixy="0.0" ixz="0.0"
-				iyy="0.00110241" iyz="0.0"
-				izz="0.00062987"/>
+					ixx="0.00091291" ixy="0.0" ixz="0.0"
+					iyy="0.00110241" iyz="0.0"
+					izz="0.00062987"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link4a">
@@ -271,7 +261,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4b.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -279,14 +268,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.02018105 0" rpy="0 0 0"/>
 				<mass value="0.69896279"/>
 				<inertia
-				ixx="0.00094182" ixy="0.0" ixz="0.0"
-				iyy="0.00032992" iyz="0.0"
-				izz="0.00088116"/>
+					ixx="0.00094182" ixy="0.0" ixz="0.0"
+					iyy="0.00032992" iyz="0.0"
+					izz="0.00088116"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link4b">
@@ -321,7 +309,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_5.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -329,14 +316,13 @@
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.04487724 0" rpy="0 0 0"/>
 				<mass value="1.00775488"/>
 				<inertia
-				ixx="0.00104342" ixy="0.0" ixz="0.0"
-				iyy="0.00064952" iyz="0.0"
-				izz="0.00104342"/>
+					ixx="0.00104342" ixy="0.0" ixz="0.0"
+					iyy="0.00064952" iyz="0.0"
+					izz="0.00104342"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link5">
@@ -356,7 +342,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6a.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -364,14 +349,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.04112 0" rpy="0 0 0"/>
 				<mass value="0.50058"/>
 				<inertia
-				ixx="0.000580228" ixy="0.0" ixz="0.0"
-				iyy="0.000541503" iyz="0.0"
-				izz="0.000750977"/>
+					ixx="0.000580228" ixy="0.0" ixz="0.0"
+					iyy="0.000541503" iyz="0.0"
+					izz="0.000750977"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link6a">
@@ -406,7 +390,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6b.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -414,14 +397,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.03855 0" rpy="0 0 0"/>
 				<mass value="0.99934"/>
 				<inertia
-				ixx="0.001905243" ixy="0.0" ixz="0.0"
-				iyy="0.000474765" iyz="0.0"
-				izz="0.001905243"/>
+					ixx="0.001905243" ixy="0.0" ixz="0.0"
+					iyy="0.000474765" iyz="0.0"
+					izz="0.001905243"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link6b">
@@ -456,7 +438,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_7.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -464,14 +445,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.01177 0" rpy="0 0 0"/>
 				<mass value="0.47608"/>
 				<inertia
-				ixx="0.000705091" ixy="0.0" ixz="0.0"
-				iyy="0.000537081" iyz="0.0"
-				izz="0.000534342"/>
+					ixx="0.000705091" ixy="0.0" ixz="0.0"
+					iyy="0.000537081" iyz="0.0"
+					izz="0.000534342"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}link7">
@@ -492,7 +472,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_palm.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -500,14 +479,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.08326 -0.00539" rpy="0 0 0"/>
 				<mass value="0.56756"/>
 				<inertia
-				ixx="0.001727803" ixy="0.000001205" ixz="0.0"
-				iyy="0.000549457" iyz="-0.000101997"
-				izz="0.001418031"/>
+					ixx="0.001727803" ixy="0.000001205" ixz="0.0"
+					iyy="0.000549457" iyz="-0.000101997"
+					izz="0.001418031"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}palm">
@@ -551,7 +529,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_base.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -559,14 +536,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.02653 0.02207" rpy="0 0 0"/>
 				<mass value="0.08562"/>
 				<inertia
-				ixx="0.0000315" ixy="0.0" ixz="0.0"
-				iyy="0.000034299" iyz="0.0"
-				izz="0.000022344"/>
+					ixx="0.0000315" ixy="0.0" ixz="0.0"
+					iyy="0.000034299" iyz="0.0"
+					izz="0.000022344"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}thumb_base">
@@ -601,7 +577,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_prox.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -609,15 +584,14 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 0.001 0.02063" rpy="0 0 0"/>
 				<mass value="0.02523"/>
 				<xacro:default_inertia />
 				<!-- <inertia
-				ixx="0.000004718" ixy="0.0" ixz="0.0"
-				iyy="0.000005374" iyz="-0.000000071"
-				izz="0.000002921"/> -->
+					ixx="0.000004718" ixy="0.0" ixz="0.0"
+					iyy="0.000005374" iyz="-0.000000071"
+					izz="0.000002921"/> -->
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}thumb_prox">
@@ -638,7 +612,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_med.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -646,14 +619,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.00353 0.01162" rpy="0 0 0"/>
 				<mass value="0.0085"/>
 				<inertia
-				ixx="0.000001099" ixy="0.0" ixz="0.0"
-				iyy="0.000001639" iyz="0.000000096"
-				izz="0.000000981"/>
+					ixx="0.000001099" ixy="0.0" ixz="0.0"
+					iyy="0.000001639" iyz="0.000000096"
+					izz="0.000000981"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}thumb_med">
@@ -674,7 +646,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_dist.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -682,14 +653,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0 -0.00131 0.01323" rpy="0 0 0"/>
 				<mass value="0.0092"/>
 				<inertia
-				ixx="0.00000066" ixy="0.0" ixz="0.0"
-				iyy="0.000000837" iyz="0.0"
-				izz="0.000000695"/>
+					ixx="0.00000066" ixy="0.0" ixz="0.0"
+					iyy="0.000000837" iyz="0.0"
+					izz="0.000000695"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}thumb_dist">
@@ -724,7 +694,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_prox_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -732,15 +701,14 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
 				<mass value="0.02523"/>
 				<xacro:default_inertia />
 				<!-- <inertia
-				ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
-				iyy="0.000002921" iyz="0.0"
-				izz="0.000004718"/> -->
+					ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
+					iyy="0.000002921" iyz="0.0"
+					izz="0.000004718"/> -->
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}index_prox">
@@ -761,7 +729,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_med_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -769,14 +736,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0.00353 -0.01162 0" rpy="0 0 0"/>
 				<mass value="0.0085"/>
 				<inertia
-				ixx="0.000001639" ixy="0.000000096" ixz="0.0"
-				iyy="0.000000981" iyz="0.0"
-				izz="0.000001099"/>
+					ixx="0.000001639" ixy="0.000000096" ixz="0.0"
+					iyy="0.000000981" iyz="0.0"
+					izz="0.000001099"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}index_med">
@@ -797,7 +763,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_dist_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -805,14 +770,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0.00131 -0.01323 0" rpy="0 0 0"/>
 				<mass value="0.0092"/>
 				<inertia
-				ixx="0.000000837" ixy="0.0" ixz="0.0"
-				iyy="0.000000695" iyz="0.0"
-				izz="0.00000066"/>
+					ixx="0.000000837" ixy="0.0" ixz="0.0"
+					iyy="0.000000695" iyz="0.0"
+					izz="0.00000066"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}index_dist">
@@ -847,7 +811,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_prox_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -855,15 +818,14 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
 				<mass value="0.02523"/>
 				<xacro:default_inertia />
 				<!-- <inertia
-				ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
-				iyy="0.000002921" iyz="0.0"
-				izz="0.000004718"/> -->
+					ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
+					iyy="0.000002921" iyz="0.0"
+					izz="0.000004718"/> -->
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}ring_prox">
@@ -884,7 +846,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_med_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -892,14 +853,13 @@
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0.00353 -0.01162 0" rpy="0 0 0"/>
 				<mass value="0.0085"/>
 				<inertia
-				ixx="0.000001639" ixy="0.000000096" ixz="0.0"
-				iyy="0.000000981" iyz="0.0"
-				izz="0.000001099"/>
+					ixx="0.000001639" ixy="0.000000096" ixz="0.0"
+					iyy="0.000000981" iyz="0.0"
+					izz="0.000001099"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}ring_med">
@@ -920,7 +880,6 @@
 					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_dist_right.STL"/>
 				</geometry>
 			</collision>
-
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -928,14 +887,13 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-
 			<inertial>
 				<origin xyz="0.00131 -0.01323 0" rpy="0 0 0"/>
 				<mass value="0.0092"/>
 				<inertia
-				ixx="0.000000837" ixy="0.0" ixz="0.0"
-				iyy="0.000000695" iyz="0.0"
-				izz="0.00000066"/>
+					ixx="0.000000837" ixy="0.0" ixz="0.0"
+					iyy="0.000000695" iyz="0.0"
+					izz="0.00000066"/>
 			</inertial>
 		</link>
 		<gazebo reference="${prefix}ring_dist">
