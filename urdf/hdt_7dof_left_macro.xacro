@@ -23,8 +23,8 @@
 			<color rgba="${40/255} ${40/255} ${40/255} 1.0"/>
 		</material>
 
-		<!-- segment 1 -->
-		<joint name="${prefix}joint1" type="revolute">
+		<!-- shoulder -->
+		<joint name="${prefix}shoulder_pitch" type="revolute">
 			<hdt id="41" kmin="100" kmax="200" inertia="0.1"/>
 			<axis xyz="-1 0 0"/>
 			<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
@@ -36,7 +36,7 @@
 
 		<transmission name="${prefix}tran1">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint1">
+			<joint name="${prefix}shoulder_pitch">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor1">
@@ -104,8 +104,8 @@
 			<material>Gazebo/Black</material>
 		</gazebo>
 
-		<!-- segment 2 -->
-		<joint name="${prefix}joint2" type="revolute">
+		<!-- shoulder roll -->
+		<joint name="${prefix}shoulder_roll" type="revolute">
 			<hdt id="42" kmin="100" kmax="200" inertia="0.1"/>
 			<axis xyz="0 1 0"/>
 			<limit effort="60.0" lower="-0.5236" upper="3.1416" velocity="2.0944"/>
@@ -117,7 +117,7 @@
 
 		<transmission name="${prefix}tran2">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint2">
+			<joint name="${prefix}shoulder_roll">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor2">
@@ -152,8 +152,8 @@
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
-		<!-- segment 3 -->
-		<joint name="${prefix}joint3" type="revolute">
+		<!-- upper arm -->
+		<joint name="${prefix}shoulder_yaw" type="revolute">
 			<hdt id="43" kmin="75" kmax="150" inertia="0.075"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
@@ -165,7 +165,7 @@
 
 		<transmission name="${prefix}tran3">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint3">
+			<joint name="${prefix}shoulder_yaw">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor3">
@@ -233,8 +233,8 @@
 			<material>Gazebo/Black</material>
 		</gazebo>
 
-		<!-- segment 4 -->
-		<joint name="${prefix}joint4" type="revolute">
+		<!-- elbow pitch -->
+		<joint name="${prefix}elbow_pitch" type="revolute">
 			<hdt id="44" kmin="75" kmax="150" inertia="0.075"/>
 			<axis xyz="-1 0 0"/>
 			<limit effort="60.0" lower="-0.5236" upper="3.6652" velocity="2.0944"/>
@@ -246,7 +246,7 @@
 
 		<transmission name="${prefix}tran4">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint4">
+			<joint name="${prefix}elbow_pitch">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor4">
@@ -281,8 +281,8 @@
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
-		<!-- segment 5 -->
-		<joint name="${prefix}joint5" type="revolute">
+		<!-- forearm -->
+		<joint name="${prefix}elbow_roll" type="revolute">
 			<hdt id="45" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="0 -1 0"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
@@ -294,7 +294,7 @@
 
 		<transmission name="${prefix}tran5">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint5">
+			<joint name="${prefix}elbow_roll">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor5">
@@ -362,8 +362,8 @@
 			<material>Gazebo/Black</material>
 		</gazebo>
 
-		<!-- segment 6 -->
-		<joint name="${prefix}joint6" type="revolute">
+		<!-- wrist pitch -->
+		<joint name="${prefix}wrist_pitch" type="revolute">
 			<hdt id="46" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
@@ -375,7 +375,7 @@
 
 		<transmission name="${prefix}tran6">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint6">
+			<joint name="${prefix}wrist_pitch">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor6">
@@ -410,8 +410,8 @@
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
-		<!-- segment 7 -->
-		<joint name="${prefix}joint7" type="revolute">
+		<!-- wrist yaw -->
+		<joint name="${prefix}wrist_yaw" type="revolute">
 			<hdt id="47" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
@@ -423,7 +423,7 @@
 
 		<transmission name="${prefix}tran7">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}joint7">
+			<joint name="${prefix}wrist_yaw">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor7">
@@ -502,7 +502,7 @@
 		<link name="${prefix}gripper_frame" />
 
 		<!-- thumb base -->
-		<joint name="${prefix}thumb_base" type="revolute">
+		<joint name="${prefix}thumb_roll" type="revolute">
 			<hdt id="50" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="0 -1 0"/>
 			<limit effort="4.0" lower="-1.5708" upper="1.5708" velocity="4.1888"/>
@@ -514,7 +514,7 @@
 
 		<transmission name="${prefix}tran10">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}thumb_base">
+			<joint name="${prefix}thumb_roll">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor10">
@@ -550,7 +550,7 @@
 		</gazebo>
 
 		<!-- thumb prox -->
-		<joint name="${prefix}thumb_prox" type="revolute">
+		<joint name="${prefix}thumb_pitch" type="revolute">
 			<hdt id="51" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="1 0 0"/>
 			<limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
@@ -562,7 +562,7 @@
 
 		<transmission name="${prefix}tran11">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}thumb_prox">
+			<joint name="${prefix}thumb_pitch">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor11">
@@ -667,7 +667,7 @@
 		</gazebo>
 
 		<!-- index prox -->
-		<joint name="${prefix}index_prox" type="revolute">
+		<joint name="${prefix}index_yaw" type="revolute">
 			<hdt id="52" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="0 0 -1"/>
 			<limit effort="4.0" lower="-1.5708" upper="0.7854" velocity="4.1888"/>
@@ -679,7 +679,7 @@
 
 		<transmission name="${prefix}tran12">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}index_prox">
+			<joint name="${prefix}index_yaw">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor12">
@@ -784,7 +784,7 @@
 		</gazebo>
 
 		<!-- ring prox -->
-		<joint name="${prefix}ring_prox" type="revolute">
+		<joint name="${prefix}ring_yaw" type="revolute">
 			<hdt id="53" kmin="5" kmax="20" inertia="0.01"/>
 			<axis xyz="0 0 -1"/>
 			<limit effort="4.0" lower="-1.5708" upper="0.7854" velocity="4.1888"/>
@@ -796,7 +796,7 @@
 
 		<transmission name="${prefix}tran13">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="${prefix}ring_prox">
+			<joint name="${prefix}ring_yaw">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor13">
