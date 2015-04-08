@@ -2,11 +2,14 @@
 <robot name="hdt_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 	<!-- default inertia -->
-	<xacro:macro name="default_inertia">
-		<inertia
-			ixx="0.0005" ixy="0.0" ixz="0.0"
-			iyy="0.0005" iyz="0.0"
-			izz="0.0005"/>
+	<xacro:macro name="default_inertial">
+		<inertial>
+			<mass value="0.025"/>
+			<inertia
+				ixx="0.0005" ixy="0.0" ixz="0.0"
+				iyy="0.0005" iyz="0.0"
+				izz="0.0005"/>
+		</inertial>
 	</xacro:macro>
 
 	<xacro:macro name="hdt_7dof_left" params="parent x y z yaw prefix">
@@ -584,15 +587,7 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-			<inertial>
-				<origin xyz="0 0.001 0.02063" rpy="0 0 0"/>
-				<mass value="0.02523"/>
-				<xacro:default_inertia />
-				<!-- <inertia
-					ixx="0.000004718" ixy="0.0" ixz="0.0"
-					iyy="0.000005374" iyz="-0.000000071"
-					izz="0.000002921"/> -->
-			</inertial>
+			<xacro:default_inertial/>
 		</link>
 		<gazebo reference="${prefix}thumb_prox">
 			<material>Gazebo/Grey</material>
@@ -701,15 +696,7 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-			<inertial>
-				<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
-				<mass value="0.02523"/>
-				<xacro:default_inertia />
-				<!-- <inertia
-					ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
-					iyy="0.000002921" iyz="0.0"
-					izz="0.000004718"/> -->
-			</inertial>
+			<xacro:default_inertial/>
 		</link>
 		<gazebo reference="${prefix}index_prox">
 			<material>Gazebo/Grey</material>
@@ -818,15 +805,7 @@
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
-			<inertial>
-				<origin xyz="-0.001 -0.02063 0" rpy="0 0 0"/>
-				<mass value="0.02523"/>
-				<xacro:default_inertia />
-				<!-- <inertia
-					ixx="0.000005374" ixy="-0.000000071" ixz="0.0"
-					iyy="0.000002921" iyz="0.0"
-					izz="0.000004718"/> -->
-			</inertial>
+			<xacro:default_inertial/>
 		</link>
 		<gazebo reference="${prefix}ring_prox">
 			<material>Gazebo/Grey</material>
