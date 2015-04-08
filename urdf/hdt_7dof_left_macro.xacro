@@ -297,7 +297,7 @@
 			<joint name="${prefix}joint5">
 				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="motor5">
+			<actuator name="${prefix}motor5">
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
