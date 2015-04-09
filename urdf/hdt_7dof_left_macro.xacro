@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <robot name="hdt_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+	<xacro:macro name="hdt_7dof_left" params="prefix parent x y z yaw motor_base_id">
+		<xacro:hdt_7dof reflect="1" left_only="1" right_only="0" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="${yaw}" motor_base_id="${motor_base_id}"/>
+	</xacro:macro>
+	<xacro:macro name="hdt_7dof_right" params="prefix parent x y z yaw motor_base_id">
+		<xacro:hdt_7dof reflect="-1" left_only="0" right_only="1" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="${yaw}" motor_base_id="${motor_base_id}"/>
+	</xacro:macro>
+
 	<!-- default inertia -->
 	<xacro:macro name="default_inertial">
 		<inertial>
@@ -12,7 +19,12 @@
 		</inertial>
 	</xacro:macro>
 
-	<xacro:macro name="hdt_7dof_left" params="parent x y z yaw prefix motor_base_id">
+	<!-- reflect: should be either 1 or -1, and can be multiplied to negate a side -->
+	<!--          the left:1, right:-1 mapping is the same as for PR2 (and works with the standard y axis) -->
+	<!-- left_only and right_only: will be either 0 or 1, and can be multplied for side-dependent results -->
+	<!-- unfortunately, xacro limitations prohibit calculating any of these values from the others, so they must all be passed in -->
+	<xacro:macro name="hdt_7dof" params="prefix reflect left_only right_only parent x y z yaw motor_base_id">
+
 		<!-- materials -->
 		<material name="${prefix}green">
 			<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
@@ -29,7 +41,7 @@
 		<!-- shoulder -->
 		<joint name="${prefix}shoulder_pitch" type="revolute">
 			<hdt id="${motor_base_id + 0}" kmin="100" kmax="200" inertia="0.1"/>
-			<axis xyz="-1 0 0"/>
+			<axis xyz="${reflect*-1} 0 0"/>
 			<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
 			<origin xyz="${x} ${y} ${z}" rpy="0 0 ${yaw}"/>
 			<parent link="${parent}"/>
@@ -110,8 +122,8 @@
 		<!-- shoulder roll -->
 		<joint name="${prefix}shoulder_roll" type="revolute">
 			<hdt id="${motor_base_id + 1}" kmin="100" kmax="200" inertia="0.1"/>
-			<axis xyz="0 1 0"/>
-			<limit effort="60.0" lower="-0.5236" upper="3.1416" velocity="2.0944"/>
+			<axis xyz="0 ${reflect*1} 0"/>
+			<limit effort="60.0" lower="${left_only*-0.5236 + right_only*-3.1416}" upper="${left_only*3.1416 + right_only*0.5236}" velocity="2.0944"/>
 			<origin xyz="-0.07 0 0" rpy="0 0 0"/>
 			<parent link="${prefix}link2a"/>
 			<child link="${prefix}link2b"/>
@@ -239,9 +251,9 @@
 		<!-- elbow pitch -->
 		<joint name="${prefix}elbow_pitch" type="revolute">
 			<hdt id="${motor_base_id + 3}" kmin="75" kmax="150" inertia="0.075"/>
-			<axis xyz="-1 0 0"/>
+			<axis xyz="${reflect*-1} 0 0"/>
 			<limit effort="60.0" lower="-0.5236" upper="3.6652" velocity="2.0944"/>
-			<origin xyz="0 0 -0.07" rpy="3.1416 0 0"/>
+			<origin xyz="0 0 -0.07" rpy="${left_only*3.1416} 0 0"/>
 			<parent link="${prefix}link4a"/>
 			<child link="${prefix}link4b"/>
 			<dynamics damping="0.7" friction="0.0"/>
@@ -289,7 +301,7 @@
 			<hdt id="${motor_base_id + 4}" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="0 -1 0"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
-			<origin xyz="0 -0.077 0" rpy="0 3.1416 0"/>
+			<origin xyz="0 -0.077 0" rpy="0 ${left_only*3.1416} 0"/>
 			<parent link="${prefix}link4b"/>
 			<child link="${prefix}link5"/>
 			<dynamics damping="0.7" friction="0.0"/>
@@ -664,9 +676,9 @@
 		<!-- index prox -->
 		<joint name="${prefix}index_yaw" type="revolute">
 			<hdt id="${motor_base_id + 11}" kmin="5" kmax="20" inertia="0.01"/>
-			<axis xyz="0 0 -1"/>
-			<limit effort="4.0" lower="-1.5708" upper="0.7854" velocity="4.1888"/>
-			<origin xyz="0 -0.16325 0.02701" rpy="0 3.1416 0"/>
+			<axis xyz="0 0 ${reflect*-1}"/>
+			<limit effort="4.0" lower="${left_only*-1.5708 + right_only*-0.7854}" upper="${left_only*0.7854 + right_only*1.5708}" velocity="4.1888"/>
+			<origin xyz="0 -0.16325 0.02701" rpy="0 ${left_only*3.1416} 0"/>
 			<parent link="${prefix}palm"/>
 			<child link="${prefix}index_prox"/>
 			<dynamics damping="0.7" friction="0.0"/>
@@ -773,9 +785,9 @@
 		<!-- ring prox -->
 		<joint name="${prefix}ring_yaw" type="revolute">
 			<hdt id="${motor_base_id + 12}" kmin="5" kmax="20" inertia="0.01"/>
-			<axis xyz="0 0 -1"/>
-			<limit effort="4.0" lower="-1.5708" upper="0.7854" velocity="4.1888"/>
-			<origin xyz="0 -0.16325 -0.02701" rpy="0 3.1416 0"/>
+			<axis xyz="0 0 ${reflect*-1}"/>
+			<limit effort="4.0" lower="${left_only*-1.5708 + right_only*-0.7854}" upper="${left_only*0.7854 + right_only*1.5708}" velocity="4.1888"/>
+			<origin xyz="0 -0.16325 -0.02701" rpy="0 ${left_only*3.1416} 0"/>
 			<parent link="${prefix}palm"/>
 			<child link="${prefix}ring_prox"/>
 			<dynamics damping="0.7" friction="0.0"/>
