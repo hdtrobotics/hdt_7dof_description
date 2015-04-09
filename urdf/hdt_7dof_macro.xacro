@@ -63,13 +63,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_1_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_1_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder.stl"/>
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
@@ -96,13 +96,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2a_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_bracket.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2a_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_bracket.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -144,13 +144,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2b.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_motor.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_2b.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_motor.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -192,13 +192,13 @@
 			<collision>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_3.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/upper_arm.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_3.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/upper_arm.stl"/>
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
@@ -225,13 +225,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4a.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_bracket.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4a.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_bracket.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -273,13 +273,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4b.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_motor.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_4b.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_motor.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -321,13 +321,13 @@
 			<collision>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_5.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/forearm.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_5.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/forearm.stl"/>
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
@@ -354,13 +354,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6a.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_pitch_bracket.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6a.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_pitch_bracket.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -402,13 +402,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6b.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_motors.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_6b.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_motors.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -450,13 +450,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_7.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_yaw_bracket.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_7.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_yaw_bracket.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -484,13 +484,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_palm.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/palm.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_palm.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/palm.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -541,13 +541,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_base.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_base.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_base.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_base.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -589,13 +589,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_prox.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_prox.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_prox.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_prox.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -616,13 +616,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_med.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_med.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_med.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_med.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -650,13 +650,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_dist.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_dist.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_thumb_dist.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/thumb_dist.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -698,13 +698,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_prox_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_prox_right.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_prox_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_prox_right.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -725,13 +725,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_med_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_med_right.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_med_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_med_right.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -759,13 +759,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_dist_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_dist_right.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_index_dist_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_dist_right.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -807,13 +807,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_prox_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_prox_right.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_prox_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_prox_right.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
@@ -834,13 +834,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_med_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_med_right.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_med_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_med_right.stl"/>
 				</geometry>
 				<material name="${prefix}black"/>
 			</visual>
@@ -868,13 +868,13 @@
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_dist_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_dist_right.stl"/>
 				</geometry>
 			</collision>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="package://hdt_7dof_description/meshes/hdt_7dof_ring_dist_right.STL"/>
+					<mesh filename="package://hdt_7dof_description/meshes/finger_dist_right.stl"/>
 				</geometry>
 				<material name="${prefix}grey"/>
 			</visual>
