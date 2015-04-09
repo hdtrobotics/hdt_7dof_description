@@ -45,7 +45,7 @@
 			<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
 			<origin xyz="${x} ${y} ${z}" rpy="0 0 ${yaw}"/>
 			<parent link="${parent}"/>
-			<child link="${prefix}link1"/>
+			<child link="${prefix}shoulder"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -59,7 +59,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link1">
+		<link name="${prefix}shoulder">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -82,17 +82,17 @@
 					izz="0.00104342"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link1">
+		<gazebo reference="${prefix}shoulder">
 			<material>Gazebo/Green</material>
 		</gazebo>
 
-		<joint name="${prefix}joint1f" type="fixed">
-			<parent link="${prefix}link1"/>
-			<child link="${prefix}link2a"/>
+		<joint name="${prefix}shoulder_fixed" type="fixed">
+			<parent link="${prefix}shoulder"/>
+			<child link="${prefix}shoulder_roll_bracket"/>
 			<origin xyz="-0.09217 0 0" rpy="0 0 0"/>
 		</joint>
 
-		<link name="${prefix}link2a">
+		<link name="${prefix}shoulder_roll_bracket">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -115,7 +115,7 @@
 					izz="0.00110241"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link2a">
+		<gazebo reference="${prefix}shoulder_roll_bracket">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
@@ -125,8 +125,8 @@
 			<axis xyz="0 ${reflect*1} 0"/>
 			<limit effort="60.0" lower="${left_only*-0.5236 + right_only*-3.1416}" upper="${left_only*3.1416 + right_only*0.5236}" velocity="2.0944"/>
 			<origin xyz="-0.07 0 0" rpy="0 0 0"/>
-			<parent link="${prefix}link2a"/>
-			<child link="${prefix}link2b"/>
+			<parent link="${prefix}shoulder_roll_bracket"/>
+			<child link="${prefix}shoulder_roll_motor"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -140,7 +140,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link2b">
+		<link name="${prefix}shoulder_roll_motor">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -163,7 +163,7 @@
 					izz="0.00032992"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link2b">
+		<gazebo reference="${prefix}shoulder_roll_motor">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
@@ -173,8 +173,8 @@
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
 			<origin xyz="0 0 -0.077" rpy="0 0 0" />
-			<parent link="${prefix}link2b"/>
-			<child link="${prefix}link3"/>
+			<parent link="${prefix}shoulder_roll_motor"/>
+			<child link="${prefix}upper_arm"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -188,7 +188,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link3">
+		<link name="${prefix}upper_arm">
 			<collision>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -211,17 +211,17 @@
 					izz="0.00114447"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link3">
+		<gazebo reference="${prefix}upper_arm">
 			<material>Gazebo/Green</material>
 		</gazebo>
 
-		<joint name="${prefix}joint3f" type="fixed">
+		<joint name="${prefix}upper_arm_fixed" type="fixed">
 			<origin xyz="0 0 -0.16271" rpy="0 0 0"/>
-			<parent link="${prefix}link3"/>
-			<child link="${prefix}link4a"/>
+			<parent link="${prefix}upper_arm"/>
+			<child link="${prefix}elbow_pitch_bracket"/>
 		</joint>
 
-		<link name="${prefix}link4a">
+		<link name="${prefix}elbow_pitch_bracket">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -244,7 +244,7 @@
 					izz="0.00062987"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link4a">
+		<gazebo reference="${prefix}elbow_pitch_bracket">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
@@ -254,8 +254,8 @@
 			<axis xyz="${reflect*-1} 0 0"/>
 			<limit effort="60.0" lower="-0.5236" upper="3.6652" velocity="2.0944"/>
 			<origin xyz="0 0 -0.07" rpy="${left_only*3.1416} 0 0"/>
-			<parent link="${prefix}link4a"/>
-			<child link="${prefix}link4b"/>
+			<parent link="${prefix}elbow_pitch_bracket"/>
+			<child link="${prefix}elbow_pitch_motor"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -269,7 +269,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link4b">
+		<link name="${prefix}elbow_pitch_motor">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -292,7 +292,7 @@
 					izz="0.00088116"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link4b">
+		<gazebo reference="${prefix}elbow_pitch_motor">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
@@ -302,8 +302,8 @@
 			<axis xyz="0 -1 0"/>
 			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
 			<origin xyz="0 -0.077 0" rpy="0 ${left_only*3.1416} 0"/>
-			<parent link="${prefix}link4b"/>
-			<child link="${prefix}link5"/>
+			<parent link="${prefix}elbow_pitch_motor"/>
+			<child link="${prefix}forearm"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -317,7 +317,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link5">
+		<link name="${prefix}forearm">
 			<collision>
 				<origin xyz="0 0 0.0" rpy="0 0 0"/>
 				<geometry>
@@ -340,17 +340,17 @@
 					izz="0.00104342"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link5">
+		<gazebo reference="${prefix}forearm">
 			<material>Gazebo/Green</material>
 		</gazebo>
 
-		<joint name="${prefix}joint5f" type="fixed">
+		<joint name="${prefix}forearm_fixed" type="fixed">
 			<origin xyz="0 -0.09217 0" rpy="0 0 0"/>
-			<parent link="${prefix}link5"/>
-			<child link="${prefix}link6a"/>
+			<parent link="${prefix}forearm"/>
+			<child link="${prefix}wrist_pitch_bracket"/>
 		</joint>
 
-		<link name="${prefix}link6a">
+		<link name="${prefix}wrist_pitch_bracket">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -373,7 +373,7 @@
 					izz="0.000750977"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link6a">
+		<gazebo reference="${prefix}wrist_pitch_bracket">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
@@ -383,8 +383,8 @@
 			<axis xyz="1 0 0"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
 			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
-			<parent link="${prefix}link6a"/>
-			<child link="${prefix}link6b"/>
+			<parent link="${prefix}wrist_pitch_bracket"/>
+			<child link="${prefix}wrist_motors"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -398,7 +398,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link6b">
+		<link name="${prefix}wrist_motors">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -421,7 +421,7 @@
 					izz="0.001905243"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link6b">
+		<gazebo reference="${prefix}wrist_motors">
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
@@ -431,8 +431,8 @@
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
 			<origin xyz="0 -0.0771 0" rpy="0 0 0"/>
-			<parent link="${prefix}link6b"/>
-			<child link="${prefix}link7"/>
+			<parent link="${prefix}wrist_motors"/>
+			<child link="${prefix}wrist_yaw_bracket"/>
 			<dynamics damping="0.7" friction="0.0"/>
 		</joint>
 
@@ -446,7 +446,7 @@
 			</actuator>
 		</transmission>
 
-		<link name="${prefix}link7">
+		<link name="${prefix}wrist_yaw_bracket">
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
@@ -469,14 +469,14 @@
 					izz="0.000534342"/>
 			</inertial>
 		</link>
-		<gazebo reference="${prefix}link7">
+		<gazebo reference="${prefix}wrist_yaw_bracket">
 			<material>Gazebo/Black</material>
 		</gazebo>
 
 		<!-- palm -->
 		<joint name="${prefix}palm" type="fixed">
 			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
-			<parent link="${prefix}link7"/>
+			<parent link="${prefix}wrist_yaw_bracket"/>
 			<child link="${prefix}palm"/>
 		</joint>
 
