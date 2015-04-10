@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <robot name="hdt_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:macro name="hdt_7dof_left" params="prefix parent x y z yaw motor_base_id">
-		<xacro:hdt_7dof reflect="1" left_only="1" right_only="0" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="${yaw}" motor_base_id="${motor_base_id}"/>
+	<xacro:macro name="hdt_7dof_left" params="prefix parent x y z motor_base_id">
+		<xacro:hdt_7dof reflect="1" left_only="1" right_only="0" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="-1.57079" motor_base_id="${motor_base_id}"/>
 	</xacro:macro>
-	<xacro:macro name="hdt_7dof_right" params="prefix parent x y z yaw motor_base_id">
-		<xacro:hdt_7dof reflect="-1" left_only="0" right_only="1" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="${yaw}" motor_base_id="${motor_base_id}"/>
+	<xacro:macro name="hdt_7dof_right" params="prefix parent x y z motor_base_id">
+		<xacro:hdt_7dof reflect="-1" left_only="0" right_only="1" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="1.57079" motor_base_id="${motor_base_id}"/>
 	</xacro:macro>
 
 	<!-- default inertia -->

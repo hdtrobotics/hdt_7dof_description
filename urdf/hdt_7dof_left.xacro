@@ -11,6 +11,6 @@
 	<link name="world" />
 
 	<xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof_macro.xacro" />
-	<xacro:hdt_7dof_left parent="world" x="0" y="0" z="0" yaw="-1.57079" prefix="l_" motor_base_id="51" />
+	<xacro:hdt_7dof_left parent="world" x="0" y="0" z="0" prefix="l_" motor_base_id="51" />
 </robot>
 
