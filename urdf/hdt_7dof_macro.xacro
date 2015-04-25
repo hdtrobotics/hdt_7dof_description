@@ -52,9 +52,9 @@
 		<transmission name="${prefix}tran1">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}shoulder_pitch">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor1">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -133,9 +133,9 @@
 		<transmission name="${prefix}tran2">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}shoulder_roll">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor2">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -181,9 +181,9 @@
 		<transmission name="${prefix}tran3">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}shoulder_yaw">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor3">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -262,9 +262,9 @@
 		<transmission name="${prefix}tran4">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}elbow_pitch">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor4">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -310,9 +310,9 @@
 		<transmission name="${prefix}tran5">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}elbow_roll">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor5">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -391,9 +391,9 @@
 		<transmission name="${prefix}tran6">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}wrist_pitch">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor6">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -439,9 +439,9 @@
 		<transmission name="${prefix}tran7">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}wrist_yaw">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor7">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -530,9 +530,9 @@
 		<transmission name="${prefix}tran10">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}thumb_roll">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor10">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -578,9 +578,9 @@
 		<transmission name="${prefix}tran11">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}thumb_pitch">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor11">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -687,9 +687,9 @@
 		<transmission name="${prefix}tran12">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}index_yaw">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor12">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -796,9 +796,9 @@
 		<transmission name="${prefix}tran13">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="${prefix}ring_yaw">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${prefix}motor13">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
