@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<robot name="hdt_7dof_left_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof_hand.xacro" />
+	<xacro:hdt_7dof_hand prefix="l_" motor_base_id="1" reflect="1" left_only="1" right_only="0" />
+</robot>
+
