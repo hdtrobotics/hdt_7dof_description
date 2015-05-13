@@ -47,6 +47,15 @@
 
         <link name="${prefix}gripper_frame" />
 
+        <!-- Hacked in joint to match ViGIR frames -->
+        <joint name="${prefix}vigir_joint" type="fixed">
+            <origin xyz = "0 -0.13 0" rpy="0 0 0" />
+            <parent link="${prefix}palm" />
+            <child link="${prefix}vigir_gripper" />
+        </joint>
+
+        <link name="${prefix}vigir_gripper" />
+
         <!-- thumb base -->
         <joint name="${prefix}thumb_roll" type="revolute">
             <hdt id="${motor_base_id + 9}" kmin="5" kmax="20" inertia="0.01"/>
