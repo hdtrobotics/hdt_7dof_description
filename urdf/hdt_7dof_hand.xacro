@@ -51,10 +51,10 @@
         <joint name="${prefix}vigir_joint" type="fixed">
             <origin xyz = "0 -0.13 0" rpy="0 0 0" />
             <parent link="${prefix}palm" />
-            <child link="${prefix}vigir_gripper" />
+            <child link="${prefix}hand" />
         </joint>
 
-        <link name="${prefix}vigir_gripper" />
+        <link name="${prefix}hand" />
 
         <!-- thumb base -->
         <joint name="${prefix}thumb_roll" type="revolute">
