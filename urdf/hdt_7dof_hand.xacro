@@ -40,7 +40,7 @@
 
         <!-- gripper frame -->
         <joint name="${prefix}gripper_frame_joint" type="fixed">
-            <origin xyz="0 -0.13 0" rpy="0 0 -1.57079" />
+            <origin xyz="0 0 0" rpy="0 0 -1.57079" />
             <parent link="${prefix}palm" />
             <child link="${prefix}gripper_frame" />
         </joint>
@@ -49,9 +49,9 @@
 
         <!-- Hacked in joint to match ViGIR frames -->
         <joint name="${prefix}vigir_joint" type="fixed">
-            <origin xyz = "0 -0.13 0" rpy="0 0 0" />
-            <parent link="${prefix}palm" />
-            <child link="${prefix}hand" />
+            <origin xyz = "0 0.13 0" rpy="0 0 0" />
+            <parent link="${prefix}hand" />
+            <child link="${prefix}palm" />
         </joint>
 
         <link name="${prefix}hand" />

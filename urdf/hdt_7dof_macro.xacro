@@ -469,7 +469,7 @@
 		<joint name="${prefix}palm" type="fixed">
 			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
 			<parent link="${prefix}wrist_yaw_bracket"/>
-			<child link="${prefix}palm"/>
+			<child link="${prefix}hand"/>
 		</joint>
 
 		<xacro:hdt_7dof_hand prefix="${prefix}" motor_base_id="${motor_base_id}" reflect="${reflect}" left_only="${left_only}" right_only="${right_only}" />
