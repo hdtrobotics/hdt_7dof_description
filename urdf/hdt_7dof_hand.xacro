@@ -109,7 +109,7 @@
             <hdt id="${motor_base_id + 10}" kmin="5" kmax="20" inertia="0.01"/>
             <axis xyz="1 0 0"/>
             <limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
-            <origin xyz="0.00214 -0.02759 0.05700" rpy="0 0 0"/>
+            <origin xyz="0.00214 -0.030093 0.05703" rpy="0 0 0"/>
             <parent link="${prefix}thumb_base"/>
             <child link="${prefix}thumb_prox"/>
             <dynamics damping="0.7" friction="0.0"/>
@@ -218,7 +218,7 @@
             <hdt id="${motor_base_id + 11}" kmin="5" kmax="20" inertia="0.01"/>
             <axis xyz="0 0 ${reflect*-1}"/>
             <limit effort="4.0" lower="${left_only*-1.5708 + right_only*-0.7854}" upper="${left_only*0.7854 + right_only*1.5708}" velocity="4.1888"/>
-            <origin xyz="0 -0.16325 0.02701" rpy="0 ${left_only*3.1416} 0"/>
+            <origin xyz="0 -0.163498 0.027" rpy="0 ${left_only*3.1416} 0"/>
             <parent link="${prefix}palm"/>
             <child link="${prefix}index_prox"/>
             <dynamics damping="0.7" friction="0.0"/>
@@ -327,7 +327,7 @@
             <hdt id="${motor_base_id + 12}" kmin="5" kmax="20" inertia="0.01"/>
             <axis xyz="0 0 ${reflect*-1}"/>
             <limit effort="4.0" lower="${left_only*-1.5708 + right_only*-0.7854}" upper="${left_only*0.7854 + right_only*1.5708}" velocity="4.1888"/>
-            <origin xyz="0 -0.16325 -0.02701" rpy="0 ${left_only*3.1416} 0"/>
+            <origin xyz="0 -0.163498 -0.027" rpy="0 ${left_only*3.1416} 0"/>
             <parent link="${prefix}palm"/>
             <child link="${prefix}ring_prox"/>
             <dynamics damping="0.7" friction="0.0"/>

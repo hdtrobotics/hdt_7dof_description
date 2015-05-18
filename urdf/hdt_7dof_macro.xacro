@@ -81,7 +81,7 @@
 		<joint name="${prefix}shoulder_fixed" type="fixed">
 			<parent link="${prefix}shoulder"/>
 			<child link="${prefix}shoulder_roll_bracket"/>
-			<origin xyz="-0.09217 0 0" rpy="0 0 0"/>
+			<origin xyz="-0.093 0 0" rpy="0 0 0"/>
 		</joint>
 
 		<link name="${prefix}shoulder_roll_bracket">
@@ -208,7 +208,7 @@
 		</gazebo>
 
 		<joint name="${prefix}upper_arm_fixed" type="fixed">
-			<origin xyz="0 0 -0.16271" rpy="0 0 0"/>
+			<origin xyz="0 0 -0.1716" rpy="0 0 0"/>
 			<parent link="${prefix}upper_arm"/>
 			<child link="${prefix}elbow_pitch_bracket"/>
 		</joint>
@@ -337,7 +337,7 @@
 		</gazebo>
 
 		<joint name="${prefix}forearm_fixed" type="fixed">
-			<origin xyz="0 -0.09217 0" rpy="0 0 0"/>
+			<origin xyz="0 -0.0751 0" rpy="0 0 0"/>
 			<parent link="${prefix}forearm"/>
 			<child link="${prefix}wrist_pitch_bracket"/>
 		</joint>
@@ -422,7 +422,7 @@
 			<hdt id="${motor_base_id + 6}" kmin="50" kmax="100" inertia="0.05"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
-			<origin xyz="0 -0.0771 0" rpy="0 0 0"/>
+			<origin xyz="0 -0.0741 0" rpy="0 0 0"/>
 			<parent link="${prefix}wrist_motors"/>
 			<child link="${prefix}wrist_yaw_bracket"/>
 			<dynamics damping="0.7" friction="0.0"/>
