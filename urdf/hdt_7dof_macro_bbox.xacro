@@ -70,13 +70,13 @@
 
 		<link name="${prefix}shoulder_roll_bracket">
 			<collision>
-				<origin xyz="0 0 0" rpy="0 1.57079633 0"/>
+				<origin xyz="-0.009 0 0" rpy="0 1.57079633 0"/>
 				<geometry>
 				  <cylinder length="0.2" radius="0.05" />
 				</geometry>
 			</collision>
 			<visual>
-				<origin xyz="0 0 0" rpy="0 1.57079633 0"/>
+				<origin xyz="-0.009 0 0" rpy="0 1.57079633 0"/>
 				<geometry>
 					<cylinder length="0.2" radius="0.05" />
 				</geometry>
@@ -115,13 +115,13 @@
 
 		<link name="${prefix}shoulder_roll_motor">
 			<collision>
-				<origin xyz="0 0 -0.16" rpy="0 0 0"/>
+				<origin xyz="0 0 -0.2183" rpy="0 0 0"/>
 				<geometry>
 					<cylinder length="0.32" radius="0.05"/>
 				</geometry>
 			</collision>
 			<visual>
-				<origin xyz="0 0 -0.16" rpy="0 0 0"/>
+				<origin xyz="0 0 -0.2183" rpy="0 0 0"/>
 				<geometry>
 					<cylinder length="0.32" radius="0.05"/>
 				</geometry>
@@ -209,15 +209,15 @@
 
 		<link name="${prefix}elbow_pitch_motor">
 			<collision>
-				<origin xyz="0 -0.1 0" rpy="1.57079633 0 0"/>
+				<origin xyz="0 -0.1126 0" rpy="1.57079633 0 0"/>
 				<geometry>
-					<cylinder length="0.2" radius="0.05"/>
+					<cylinder length="0.1" radius="0.05"/>
 				</geometry>
 			</collision>
 			<visual>
-				<origin xyz="0 -0.1 0" rpy="1.57079633 0 0"/>
+				<origin xyz="0 -0.1126 0" rpy="1.57079633 0 0"/>
 				<geometry>
-					<cylinder length="0.2" radius="0.05"/>
+					<cylinder length="0.1" radius="0.05"/>
 				</geometry>
 				<material name="${prefix}green"/>
 			</visual>
