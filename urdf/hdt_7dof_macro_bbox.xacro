@@ -96,7 +96,7 @@
 		<joint name="${prefix}shoulder_roll" type="revolute">
 			<hdt id="${motor_base_id + 1}" kmin="100" kmax="200" inertia="0.1"/>
 			<axis xyz="0 ${reflect*1} 0"/>
-			<limit effort="60.0" lower="${left_only*-0.5236 + right_only*-3.1416}" upper="${left_only*3.1416 + right_only*0.5236}" velocity="2.0944"/>
+			<limit effort="60.0" lower="${left_only*-0.0 + right_only*-3.1416}" upper="${left_only*3.1416 + right_only*0.0}" velocity="2.0944"/>
 			<origin xyz="-0.07 0 0" rpy="0 0 0"/>
 			<parent link="${prefix}shoulder_roll_bracket"/>
 			<child link="${prefix}shoulder_roll_motor"/>
