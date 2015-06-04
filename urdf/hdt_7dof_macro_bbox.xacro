@@ -22,6 +22,10 @@
 			<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
 		</material>
 
+		<material name="${prefix}maroon">
+			<color rgba="${75/255} ${0/255} ${0/255} 1.0"/>
+		</material>
+
 		<material name="${prefix}black">
 			<color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
 		</material>
@@ -80,7 +84,7 @@
 				<geometry>
 					<cylinder length="0.2" radius="0.05" />
 				</geometry>
-				<material name="${prefix}green"/>
+				<material name="${prefix}maroon"/>
 			</visual>
 			<inertial>
 				<origin xyz="-0.04416876 0 0" rpy="0 0 0"/>
@@ -125,7 +129,7 @@
 				<geometry>
 					<cylinder length="0.32" radius="0.05"/>
 				</geometry>
-				<material name="${prefix}green"/>
+				<material name="${prefix}maroon"/>
 			</visual>
 			<inertial>
 				<origin xyz="0 0 -0.02018105" rpy="0 0 0"/>
@@ -219,7 +223,7 @@
 				<geometry>
 					<cylinder length="0.1" radius="0.05"/>
 				</geometry>
-				<material name="${prefix}green"/>
+				<material name="${prefix}maroon"/>
 			</visual>
 			<inertial>
 				<origin xyz="0 -0.02018105 0" rpy="0 0 0"/>

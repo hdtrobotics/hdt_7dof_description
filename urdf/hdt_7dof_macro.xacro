@@ -22,6 +22,10 @@
 			<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
 		</material>
 
+		<material name="${prefix}maroon">
+			<color rgba="${75/255} ${0/255} ${0/255} 1.0"/>
+		</material>
+
 		<material name="${prefix}black">
 			<color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
 		</material>
@@ -63,7 +67,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/shoulder.stl"/>
 				</geometry>
-				<material name="${prefix}green"/>
+				<material name="${prefix}maroon"/>
 			</visual>
 			<inertial>
 				<origin xyz="-0.04488 0 0" rpy="0 0 0"/>
@@ -192,7 +196,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/upper_arm.stl"/>
 				</geometry>
-				<material name="${prefix}green"/>
+				<material name="${prefix}maroon"/>
 			</visual>
 			<inertial>
 				<origin xyz="0 0 -0.08013953" rpy="0 0 0"/>
@@ -321,7 +325,7 @@
 				<geometry>
 					<mesh filename="package://hdt_7dof_description/meshes/forearm.stl"/>
 				</geometry>
-				<material name="${prefix}green"/>
+				<material name="${prefix}maroon"/>
 			</visual>
 			<inertial>
 				<origin xyz="0 -0.04487724 0" rpy="0 0 0"/>
