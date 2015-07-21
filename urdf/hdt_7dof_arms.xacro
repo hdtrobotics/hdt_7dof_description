@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="escher_arms" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<!-- hdt arms -->
+  <xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof_macro.xacro" />
+  <xacro:hdt_7dof_left parent="chest" x="0" y="0.1275" z="0.2804" prefix="l_" motor_base_id="41" />
+  <xacro:hdt_7dof_right parent="chest" x="0" y="-0.1275" z="0.2804" prefix="r_" motor_base_id="1" />
+</robot>

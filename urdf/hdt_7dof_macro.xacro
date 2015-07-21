@@ -1,0 +1,482 @@
+<?xml version="1.0"?>
+<robot name="hdt_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:macro name="hdt_7dof_left" params="prefix parent x y z motor_base_id">
+		<xacro:hdt_7dof reflect="1" left_only="1" right_only="0" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="-1.57079" motor_base_id="${motor_base_id}"/>
+	</xacro:macro>
+	<xacro:macro name="hdt_7dof_right" params="prefix parent x y z motor_base_id">
+		<xacro:hdt_7dof reflect="-1" left_only="0" right_only="1" prefix="${prefix}" parent="${parent}" x="${x}" y="${y}" z="${z}" yaw="1.57079" motor_base_id="${motor_base_id}"/>
+	</xacro:macro>
+
+	<!-- hand included here -->
+	<xacro:include filename="$(find hdt_7dof_description)/urdf/hdt_7dof_hand.xacro" />
+
+	<!-- reflect: should be either 1 or -1, and can be multiplied to negate a side -->
+	<!--          the left:1, right:-1 mapping is the same as for PR2 (and works with the standard y axis) -->
+	<!-- left_only and right_only: will be either 0 or 1, and can be multplied for side-dependent results -->
+	<!-- unfortunately, xacro limitations prohibit calculating any of these values from the others, so they must all be passed in -->
+	<xacro:macro name="hdt_7dof" params="prefix reflect left_only right_only parent x y z yaw motor_base_id">
+
+		<!-- materials -->
+		<material name="${prefix}green">
+			<color rgba="${53/255} ${94/255} ${59/255} 1.0"/>
+		</material>
+
+		<material name="${prefix}maroon">
+			<color rgba="${75/255} ${0/255} ${0/255} 1.0"/>
+		</material>
+
+		<material name="${prefix}black">
+			<color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
+		</material>
+
+		<material name="${prefix}grey">
+			<color rgba="${40/255} ${40/255} ${40/255} 1.0"/>
+		</material>
+
+		<!-- shoulder -->
+		<joint name="${prefix}shoulder_pitch" type="revolute">
+			<hdt id="${motor_base_id + 0}" kmin="100" kmax="200" inertia="0.1"/>
+			<axis xyz="${reflect*-1} 0 0"/>
+			<limit effort="60.0" lower="-3.1416" upper="1.0472" velocity="2.0944"/>
+			<origin xyz="${x} ${y} ${z}" rpy="0 0 ${yaw}"/>
+			<parent link="${parent}"/>
+			<child link="${prefix}shoulder"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran1">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}shoulder_pitch">
+			</joint>
+			<actuator name="${prefix}motor1">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}shoulder">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder.stl"/>
+				</geometry>
+				<material name="${prefix}maroon"/>
+			</visual>
+			<inertial>
+				<origin xyz="-0.04488 0 0" rpy="0 0 0"/>
+				<mass value="1.00775"/>
+				<inertia
+					ixx="0.00064952" ixy="0.0" ixz="0.0"
+					iyy="0.00104342" iyz="0.0"
+					izz="0.00104342"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}shoulder">
+			<material>Gazebo/Green</material>
+		</gazebo>
+
+		<joint name="${prefix}shoulder_fixed" type="fixed">
+			<parent link="${prefix}shoulder"/>
+			<child link="${prefix}shoulder_roll_bracket"/>
+			<origin xyz="-0.093 0 0" rpy="0 0 0"/>
+		</joint>
+
+		<link name="${prefix}shoulder_roll_bracket">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_bracket.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_bracket.stl"/>
+				</geometry>
+				<material name="${prefix}black"/>
+			</visual>
+			<inertial>
+				<origin xyz="-0.04416876 0 0" rpy="0 0 0"/>
+				<mass value="0.66774822"/>
+				<inertia
+					ixx="0.00062987" ixy="0.0" ixz="0.0"
+					iyy="0.00091291" iyz="0.0"
+					izz="0.00110241"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}shoulder_roll_bracket">
+			<material>Gazebo/Black</material>
+		</gazebo>
+
+		<!-- shoulder roll -->
+		<joint name="${prefix}shoulder_roll" type="revolute">
+			<hdt id="${motor_base_id + 1}" kmin="100" kmax="200" inertia="0.1"/>
+			<axis xyz="0 ${reflect*1} 0"/>
+			<limit effort="60.0" lower="${left_only*-0.0 + right_only*-3.1416}" upper="${left_only*3.1416 + right_only*0.0}" velocity="2.0944"/>
+			<origin xyz="-0.07 0 0" rpy="0 0 0"/>
+			<parent link="${prefix}shoulder_roll_bracket"/>
+			<child link="${prefix}shoulder_roll_motor"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran2">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}shoulder_roll">
+			</joint>
+			<actuator name="${prefix}motor2">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}shoulder_roll_motor">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_motor.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/shoulder_roll_motor.stl"/>
+				</geometry>
+				<material name="${prefix}grey"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 0 -0.02018105" rpy="0 0 0"/>
+				<mass value="0.69896"/>
+				<inertia
+					ixx="0.00088116" ixy="0.0" ixz="0.0"
+					iyy="0.00094182" iyz="0.0"
+					izz="0.00032992"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}shoulder_roll_motor">
+			<material>Gazebo/Grey</material>
+		</gazebo>
+
+		<!-- upper arm -->
+		<joint name="${prefix}shoulder_yaw" type="revolute">
+			<hdt id="${motor_base_id + 2}" kmin="75" kmax="150" inertia="0.075"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
+			<origin xyz="0 0 -0.077" rpy="0 0 0" />
+			<parent link="${prefix}shoulder_roll_motor"/>
+			<child link="${prefix}upper_arm"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran3">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}shoulder_yaw">
+			</joint>
+			<actuator name="${prefix}motor3">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}upper_arm">
+			<collision>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/upper_arm.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/upper_arm.stl"/>
+				</geometry>
+				<material name="${prefix}maroon"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 0 -0.08013953" rpy="0 0 0"/>
+				<mass value="1.77733729"/>
+				<inertia
+					ixx="0.00450640" ixy="0.0" ixz="0.0"
+					iyy="0.00450640" iyz="0.0"
+					izz="0.00114447"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}upper_arm">
+			<material>Gazebo/Green</material>
+		</gazebo>
+
+		<joint name="${prefix}upper_arm_fixed" type="fixed">
+			<origin xyz="0 0 -0.1716" rpy="0 0 0"/>
+			<parent link="${prefix}upper_arm"/>
+			<child link="${prefix}elbow_pitch_bracket"/>
+		</joint>
+
+		<link name="${prefix}elbow_pitch_bracket">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_bracket.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_bracket.stl"/>
+				</geometry>
+				<material name="${prefix}black"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 0 -0.04416876" rpy="0 0 0"/>
+				<mass value="0.66774822"/>
+				<inertia
+					ixx="0.00091291" ixy="0.0" ixz="0.0"
+					iyy="0.00110241" iyz="0.0"
+					izz="0.00062987"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}elbow_pitch_bracket">
+			<material>Gazebo/Black</material>
+		</gazebo>
+
+		<!-- elbow pitch -->
+		<joint name="${prefix}elbow_pitch" type="revolute">
+			<hdt id="${motor_base_id + 3}" kmin="75" kmax="150" inertia="0.075"/>
+			<axis xyz="${reflect*-1} 0 0"/>
+			<limit effort="60.0" lower="-0.5236" upper="2.0944" velocity="2.0944"/>
+			<origin xyz="0 0 -0.07" rpy="${left_only*3.1416} 0 0"/>
+			<parent link="${prefix}elbow_pitch_bracket"/>
+			<child link="${prefix}elbow_pitch_motor"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran4">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}elbow_pitch">
+			</joint>
+			<actuator name="${prefix}motor4">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}elbow_pitch_motor">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_motor.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/elbow_pitch_motor.stl"/>
+				</geometry>
+				<material name="${prefix}grey"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 -0.02018105 0" rpy="0 0 0"/>
+				<mass value="0.69896279"/>
+				<inertia
+					ixx="0.00094182" ixy="0.0" ixz="0.0"
+					iyy="0.00032992" iyz="0.0"
+					izz="0.00088116"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}elbow_pitch_motor">
+			<material>Gazebo/Grey</material>
+		</gazebo>
+
+		<!-- forearm -->
+		<joint name="${prefix}elbow_roll" type="revolute">
+			<hdt id="${motor_base_id + 4}" kmin="50" kmax="100" inertia="0.05"/>
+			<axis xyz="0 -1 0"/>
+			<limit effort="60.0" lower="-2.0944" upper="2.0944" velocity="2.0944"/>
+			<origin xyz="0 -0.077 0" rpy="0 ${left_only*3.1416} 0"/>
+			<parent link="${prefix}elbow_pitch_motor"/>
+			<child link="${prefix}forearm"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran5">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}elbow_roll">
+			</joint>
+			<actuator name="${prefix}motor5">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}forearm">
+			<collision>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/forearm.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/forearm.stl"/>
+				</geometry>
+				<material name="${prefix}maroon"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 -0.04487724 0" rpy="0 0 0"/>
+				<mass value="1.00775488"/>
+				<inertia
+					ixx="0.00104342" ixy="0.0" ixz="0.0"
+					iyy="0.00064952" iyz="0.0"
+					izz="0.00104342"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}forearm">
+			<material>Gazebo/Green</material>
+		</gazebo>
+
+		<joint name="${prefix}forearm_fixed" type="fixed">
+			<origin xyz="0 -0.0751 0" rpy="0 0 0"/>
+			<parent link="${prefix}forearm"/>
+			<child link="${prefix}wrist_pitch_bracket"/>
+		</joint>
+
+		<link name="${prefix}wrist_pitch_bracket">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_pitch_bracket.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_pitch_bracket.stl"/>
+				</geometry>
+				<material name="${prefix}black"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 -0.04112 0" rpy="0 0 0"/>
+				<mass value="0.50058"/>
+				<inertia
+					ixx="0.000580228" ixy="0.0" ixz="0.0"
+					iyy="0.000541503" iyz="0.0"
+					izz="0.000750977"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}wrist_pitch_bracket">
+			<material>Gazebo/Black</material>
+		</gazebo>
+
+		<!-- wrist pitch -->
+		<joint name="${prefix}wrist_pitch" type="revolute">
+			<hdt id="${motor_base_id + 5}" kmin="50" kmax="100" inertia="0.05"/>
+			<axis xyz="1 0 0"/>
+			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
+			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
+			<parent link="${prefix}wrist_pitch_bracket"/>
+			<child link="${prefix}wrist_motors"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran6">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}wrist_pitch">
+			</joint>
+			<actuator name="${prefix}motor6">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}wrist_motors">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_motors.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_motors.stl"/>
+				</geometry>
+				<material name="${prefix}grey"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 -0.03855 0" rpy="0 0 0"/>
+				<mass value="0.99934"/>
+				<inertia
+					ixx="0.001905243" ixy="0.0" ixz="0.0"
+					iyy="0.000474765" iyz="0.0"
+					izz="0.001905243"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}wrist_motors">
+			<material>Gazebo/Grey</material>
+		</gazebo>
+
+		<!-- wrist yaw -->
+		<joint name="${prefix}wrist_yaw" type="revolute">
+			<hdt id="${motor_base_id + 6}" kmin="50" kmax="100" inertia="0.05"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="60.0" lower="-1.5708" upper="1.5708" velocity="2.0944"/>
+			<origin xyz="0 -0.0741 0" rpy="0 0 0"/>
+			<parent link="${prefix}wrist_motors"/>
+			<child link="${prefix}wrist_yaw_bracket"/>
+			<dynamics damping="0.7" friction="0.0"/>
+		</joint>
+
+		<transmission name="${prefix}tran7">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}wrist_yaw">
+			</joint>
+			<actuator name="${prefix}motor7">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<link name="${prefix}wrist_yaw_bracket">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_yaw_bracket.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0.0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="package://hdt_7dof_description/meshes/wrist_yaw_bracket.stl"/>
+				</geometry>
+				<material name="${prefix}black"/>
+			</visual>
+			<inertial>
+				<origin xyz="0 -0.01177 0" rpy="0 0 0"/>
+				<mass value="0.47608"/>
+				<inertia
+					ixx="0.000705091" ixy="0.0" ixz="0.0"
+					iyy="0.000537081" iyz="0.0"
+					izz="0.000534342"/>
+			</inertial>
+		</link>
+		<gazebo reference="${prefix}wrist_yaw_bracket">
+			<material>Gazebo/Black</material>
+		</gazebo>
+
+		<!-- palm -->
+		<joint name="${prefix}palm" type="fixed">
+			<origin xyz="0 -0.055 0" rpy="0 0 0"/>
+			<parent link="${prefix}wrist_yaw_bracket"/>
+			<child link="${prefix}hand"/>
+		</joint>
+
+		<xacro:hdt_7dof_hand prefix="${prefix}" motor_base_id="${motor_base_id}" reflect="${reflect}" left_only="${left_only}" right_only="${right_only}" />
+	</xacro:macro>
+</robot>
+

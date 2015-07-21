@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hdt_7dof_hand_bbox">
+    <!-- default inertia -->
+    <xacro:macro name="default_inertial">
+        <inertial>
+            <mass value="0.025"/>
+            <inertia
+                ixx="0.0005" ixy="0.0" ixz="0.0"
+                iyy="0.0005" iyz="0.0"
+                izz="0.0005"/>
+        </inertial>
+    </xacro:macro>
+    <xacro:macro name="hdt_7dof_hand_bbox" params="prefix reflect motor_base_id left_only right_only">
+        <link name="${prefix}palm">
+            <collision>
+                <origin xyz="0 -0.069749 0.005" rpy="0 0 1.57079633"/>
+                <geometry>
+                    <box size="0.18 0.071 0.105"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0 -0.069749 0.005" rpy="0 0 1.57079633"/>
+                <geometry>
+                    <box size="0.18 0.071 0.105"/>
+                </geometry>
+                <material name="${prefix}black"/>
+            </visual>
+            <inertial>
+                <origin xyz="0 -0.08326 -0.00539" rpy="0 0 0"/>
+                <mass value="0.56756"/>
+                <inertia
+                    ixx="0.001727803" ixy="0.000001205" ixz="0.0"
+                    iyy="0.000549457" iyz="-0.000101997"
+                    izz="0.001418031"/>
+            </inertial>
+        </link>
+
+        <!-- gripper frame -->
+        <joint name="${prefix}gripper_frame_joint" type="fixed">
+            <origin xyz="0 -0.13 0" rpy="0 0 -1.57079" />
+            <parent link="${prefix}palm" />
+            <child link="${prefix}gripper_frame" />
+        </joint>
+
+        <link name="${prefix}gripper_frame" />
+
+        <!-- Hacked in joint to match ViGIR frames -->
+        <joint name="${prefix}vigir_joint" type="fixed">
+            <origin xyz = "0 -0.13 0" rpy="0 0 0" />
+            <parent link="${prefix}palm" />
+            <child link="${prefix}hand" />
+        </joint>
+
+        <link name="${prefix}hand" />
+
+        <!-- thumb base -->
+        <joint name="${prefix}thumb_roll" type="revolute">
+            <hdt id="${motor_base_id + 9}" kmin="5" kmax="20" inertia="0.01"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="4.0" lower="-1.5708" upper="1.5708" velocity="4.1888"/>
+            <origin xyz="0 -0.05039 0.01529" rpy="0 0 0"/>
+            <parent link="${prefix}palm"/>
+            <child link="${prefix}thumb_base"/>
+            <dynamics damping="0.7" friction="0.0"/>
+        </joint>
+
+        <transmission name="${prefix}tran10">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}thumb_roll">
+            </joint>
+            <actuator name="${prefix}motor10">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <link name="${prefix}thumb_base">
+            <collision>
+                <origin xyz="0 -0.03495 0.02903155" rpy="0 0 1.57079633"/>
+                <geometry>
+                    <box size="0.05 0.05 0.07"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0 -0.03495 0.02903155" rpy="0 0 1.57079633"/>
+                <geometry>
+                    <box size="0.05 0.05 0.07"/>
+                </geometry>
+                <material name="${prefix}grey"/>
+            </visual>
+            <inertial>
+                <origin xyz="0 -0.02653 0.02207" rpy="0 0 0"/>
+                <mass value="0.08562"/>
+                <inertia
+                    ixx="0.0000315" ixy="0.0" ixz="0.0"
+                    iyy="0.000034299" iyz="0.0"
+                    izz="0.000022344"/>
+            </inertial>
+        </link>
+
+        <!-- thumb prox -->
+        <joint name="${prefix}thumb_pitch" type="revolute">
+            <hdt id="${motor_base_id + 10}" kmin="5" kmax="20" inertia="0.01"/>
+            <axis xyz="1 0 0"/>
+            <limit effort="4.0" lower="-0.7854" upper="1.5708" velocity="4.1888"/>
+            <origin xyz="0.002143 -0.030093 0.0573" rpy="0 0 0"/>
+            <parent link="${prefix}thumb_base"/>
+            <child link="${prefix}thumb_prox"/>
+            <dynamics damping="0.7" friction="0.0"/>
+        </joint>
+
+        <transmission name="${prefix}tran11">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}thumb_pitch">
+            </joint>
+            <actuator name="${prefix}motor11">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <link name="${prefix}thumb_prox">
+            <collision>
+                <origin xyz="0 -0.00154045 0.05414235" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.10" radius="0.025"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0 -0.00154045 0.05414235" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.10" radius="0.025"/>
+                </geometry>
+                <material name="${prefix}grey"/>
+            </visual>
+            <xacro:default_inertial/>
+        </link>
+        <gazebo reference="${prefix}thumb_prox">
+            <material>Gazebo/Grey</material>
+        </gazebo>
+
+        <!-- thumb med -->
+        <joint name="${prefix}thumb_med" type="fixed">
+            <origin xyz="0 0.00285 0.04341" rpy="0 0 0"/>
+            <parent link="${prefix}thumb_prox"/>
+            <child link="${prefix}thumb_med"/>
+        </joint>
+
+        <link name="${prefix}thumb_med">
+            <inertial>
+                <origin xyz="0 -0.00353 0.01162" rpy="0 0 0"/>
+                <mass value="0.0085"/>
+                <inertia
+                    ixx="0.000001099" ixy="0.0" ixz="0.0"
+                    iyy="0.000001639" iyz="0.000000096"
+                    izz="0.000000981"/>
+            </inertial>
+        </link>
+
+        <!-- thumb dist -->
+        <joint name="${prefix}thumb_dist" type="fixed">
+            <origin xyz="0 -0.0009 0.02769" rpy="0 0 0"/>
+            <parent link="${prefix}thumb_med"/>
+            <child link="${prefix}thumb_dist"/>
+        </joint>
+
+        <link name="${prefix}thumb_dist">
+            <inertial>
+                <origin xyz="0 -0.00131 0.01323" rpy="0 0 0"/>
+                <mass value="0.0092"/>
+                <inertia
+                    ixx="0.00000066" ixy="0.0" ixz="0.0"
+                    iyy="0.000000837" iyz="0.0"
+                    izz="0.000000695"/>
+            </inertial>
+        </link>
+
+        <!-- index prox -->
+        <joint name="${prefix}index_yaw" type="revolute">
+            <hdt id="${motor_base_id + 11}" kmin="5" kmax="20" inertia="0.01"/>
+            <axis xyz="0 0 ${reflect*-1}"/>
+            <limit effort="4.0" lower="${left_only*-1.5708 + right_only*-0.7854}" upper="${left_only*0.7854 + right_only*1.5708}" velocity="4.1888"/>
+            <origin xyz="0 -0.163498 0.027" rpy="0 ${left_only*3.1416} 0"/>
+            <parent link="${prefix}palm"/>
+            <child link="${prefix}index_prox"/>
+            <dynamics damping="0.7" friction="0.0"/>
+        </joint>
+
+        <transmission name="${prefix}tran12">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}index_yaw">
+            </joint>
+            <actuator name="${prefix}motor12">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <link name="${prefix}index_prox">
+            <collision>
+                <origin xyz="0.00154045 -0.04442185 0" rpy="-1.57079633 0 0"/>
+                <geometry>
+                    <cylinder length="0.10" radius="0.025"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.00154045 -0.04442185 0" rpy="-1.57079633 0 0"/>
+                <geometry>
+                    <cylinder length="0.10" radius="0.025"/>
+                </geometry>
+                <material name="${prefix}grey"/>
+            </visual>
+            <xacro:default_inertial/>
+        </link>
+
+        <!-- index med -->
+        <joint name="${prefix}index_med" type="fixed">
+            <origin xyz="-0.00285 -0.04341 0" rpy="0 0 0"/>
+            <parent link="${prefix}index_prox"/>
+            <child link="${prefix}index_med"/>
+        </joint>
+
+        <link name="${prefix}index_med">
+            <inertial>
+                <origin xyz="0.00353 -0.01162 0" rpy="0 0 0"/>
+                <mass value="0.0085"/>
+                <inertia
+                    ixx="0.000001639" ixy="0.000000096" ixz="0.0"
+                    iyy="0.000000981" iyz="0.0"
+                    izz="0.000001099"/>
+            </inertial>
+        </link>
+
+        <!-- index dist -->
+        <joint name="${prefix}index_dist" type="fixed">
+            <origin xyz="0.0009 -0.02769 0" rpy="0 0 0"/>
+            <parent link="${prefix}index_med"/>
+            <child link="${prefix}index_dist"/>
+        </joint>
+
+        <link name="${prefix}index_dist">
+            <inertial>
+                <origin xyz="0.00131 -0.01323 0" rpy="0 0 0"/>
+                <mass value="0.0092"/>
+                <inertia
+                    ixx="0.000000837" ixy="0.0" ixz="0.0"
+                    iyy="0.000000695" iyz="0.0"
+                    izz="0.00000066"/>
+            </inertial>
+        </link>
+
+        <!-- ring prox -->
+        <joint name="${prefix}ring_yaw" type="revolute">
+            <hdt id="${motor_base_id + 12}" kmin="5" kmax="20" inertia="0.01"/>
+            <axis xyz="0 0 ${reflect*-1}"/>
+            <limit effort="4.0" lower="${left_only*-1.5708 + right_only*-0.7854}" upper="${left_only*0.7854 + right_only*1.5708}" velocity="4.1888"/>
+            <origin xyz="0 -0.163498 -0.027" rpy="0 ${left_only*3.1416} 0"/>
+            <parent link="${prefix}palm"/>
+            <child link="${prefix}ring_prox"/>
+            <dynamics damping="0.7" friction="0.0"/>
+        </joint>
+
+        <transmission name="${prefix}tran13">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}ring_yaw">
+            </joint>
+            <actuator name="${prefix}motor13">
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <link name="${prefix}ring_prox">
+            <collision>
+                <origin xyz="0.00154045 -0.04442185 0" rpy="-1.57079633 0 0"/>
+                <geometry>
+                    <cylinder length="0.10" radius="0.025"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.00154045 -0.04442185 0" rpy="-1.57079633 0 0"/>
+                <geometry>
+                    <cylinder length="0.10" radius="0.025"/>
+                </geometry>
+                <material name="${prefix}grey"/>
+            </visual>
+            <xacro:default_inertial/>
+        </link>
+
+        <!-- ring med -->
+        <joint name="${prefix}ring_med" type="fixed">
+            <origin xyz="-0.00285 -0.04341 0" rpy="0 0 0"/>
+            <parent link="${prefix}ring_prox"/>
+            <child link="${prefix}ring_med"/>
+        </joint>
+
+        <link name="${prefix}ring_med">
+            <inertial>
+                <origin xyz="0.00353 -0.01162 0" rpy="0 0 0"/>
+                <mass value="0.0085"/>
+                <inertia
+                    ixx="0.000001639" ixy="0.000000096" ixz="0.0"
+                    iyy="0.000000981" iyz="0.0"
+                    izz="0.000001099"/>
+            </inertial>
+        </link>
+
+        <!-- ring dist -->
+        <joint name="${prefix}ring_dist" type="fixed">
+            <origin xyz="0.0009 -0.02769 0" rpy="0 0 0"/>
+            <parent link="${prefix}ring_med"/>
+            <child link="${prefix}ring_dist"/>
+        </joint>
+
+        <link name="${prefix}ring_dist">
+            <inertial>
+                <origin xyz="0.00131 -0.01323 0" rpy="0 0 0"/>
+                <mass value="0.0092"/>
+                <inertia
+                    ixx="0.000000837" ixy="0.0" ixz="0.0"
+                    iyy="0.000000695" iyz="0.0"
+                    izz="0.00000066"/>
+            </inertial>
+        </link>
+    </xacro:macro>
+</robot>
