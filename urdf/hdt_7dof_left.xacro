@@ -476,6 +476,16 @@
 		<material>Gazebo/Black</material>
 	</gazebo>
 
+	<!-- endpoint -->
+	<joint name="endpoint_joint" type="fixed">
+		<origin xyz="0 -0.055 0" rpy="0 0 0"/>
+		<parent link="link7"/>
+		<child link="endpoint_link"/>
+	</joint>
+
+	<link name="endpoint_link">
+	</link>
+
 	<!-- palm -->
 	<joint name="palm" type="fixed">
 		<origin xyz="0 -0.055 0" rpy="0 0 0"/>
